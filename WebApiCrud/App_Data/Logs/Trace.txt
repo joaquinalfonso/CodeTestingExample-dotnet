@@ -26,3 +26,5 @@
 2018-11-02 17:54:07.5630| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
 2018-11-02 17:55:29.9573| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
 2018-11-02 17:59:13.8596| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 18:07:10.1078| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 18:09:25.8551| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
