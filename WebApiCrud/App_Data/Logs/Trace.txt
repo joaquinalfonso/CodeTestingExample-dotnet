@@ -23,3 +23,6 @@
 2018-11-02 14:30:11.0151| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
 2018-11-02 16:38:54.5539| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
 2018-11-02 16:38:58.0866| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 5EO0L
+2018-11-02 17:54:07.5630| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 17:55:29.9573| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 17:59:13.8596| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
