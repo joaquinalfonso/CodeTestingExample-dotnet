@@ -124,6 +124,11 @@
   <ItemGroup>
     <Compile Include="App_Code\Configuracion.cs" />
     <Compile Include="App_Code\FicherosBR.cs" />
+    <Compile Include="App_GlobalResources\Mensajes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mensajes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\CronTareaDia.cs" />
     <Compile Include="Controllers\CronTareaMinuto.cs" />
     <Compile Include="Controllers\ITranscripcionesBO.cs" />
@@ -188,6 +193,12 @@
   <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Mensajes.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Mensajes.Designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

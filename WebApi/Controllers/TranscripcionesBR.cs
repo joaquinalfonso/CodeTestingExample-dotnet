@@ -194,6 +194,38 @@ namespace WebApi.Controllers
 
         }
 
+        public void GrabarFicheroRecibido(ITranscripcionesBO bo, HttpRequest request, string loginUsuario)
+        {
+
+            if (request.Files.Count != 1)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            var ficheroEnviado = request.Files["mp3"];
+
+            if (ficheroEnviado == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            new TranscripcionesBR().ValidarFichero(ficheroEnviado);
+
+            int nuevoIdTranscripcion = bo.ObtenerNuevoIdTranscripcion();
+
+            new TranscripcionesBR().GrabarFicheroMp3(ficheroEnviado, nuevoIdTranscripcion);
+
+            Transcripcion transcripcion = new Transcripcion
+            {
+                Id = nuevoIdTranscripcion,
+                FechaHoraRecepcion = DateTime.Now,
+                LoginUsuario = loginUsuario,
+                NombreArchivo = ficheroEnviado.FileName,
+                Estado = TipoEstadoTranscripcion.PENDIENTE.ToString()
+            };
+
+            bo.InsertarTranscripcion(transcripcion);
+        }
 
         //public static bool ValidarFicheroImagen(string filename, ref string mensaje)
         //{

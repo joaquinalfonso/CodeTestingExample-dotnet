@@ -7,6 +7,7 @@ using System.Web.Http;
 using WebApi.Models;
 using WebApi.Comun;
 using WebApi.App_Code;
+using System.Web;
 
 namespace WebApi.Controllers
 {
@@ -25,75 +26,45 @@ namespace WebApi.Controllers
             this.bo = transcripcionesBO;
         }
 
-
-        public HttpResponseMessage Get(string desde = "", string hasta = "")
+        // [GET] api/Transcripciones
+        // [GET] api/Transcripciones?desde=yyyy-MM-ddTHH:mm
+        // [GET] api/Transcripciones?hasta=yyyy-MM-ddTHH:mm
+        // [GET] api/Transcripciones?desde=yyyy-MM-ddTHH:mm&hasta=yyyy-MM-ddTHH:mm
+        public HttpResponseMessage GetTranscripciones(string desde = "", string hasta = "")
         {
-
             try
             {
                 ParametrosGetTranscripcionesTO parametrosConsulta = new TranscripcionesBR().ObtenerParametrosConsultaGetTranscripciones(Request, desde, hasta);
-                 
                 parametrosConsulta.Login = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-
                 List<TranscripcionDTO> listaTranscripciones = bo.ObtenerTranscripciones(parametrosConsulta);
 
                 return Request.CreateResponse(HttpStatusCode.OK, listaTranscripciones);
-
             }
             catch (HttpResponseException ex)
             {
-                switch (ex.Response.StatusCode)
-                {
-                    case HttpStatusCode.Unauthorized:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Usuario no válido");
-
-                    case HttpStatusCode.BadRequest:
-                        string mensajeError = string.Format("Formato de fechas incorrecto. Parámetros opcionales: ?desde={0}&hasta={0}", Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING);
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, mensajeError);
-                  
-                    default:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Ha ocurrido un error");
-
-                }
-
+                return GestionarErrorGetTranscripciones(ex);
             }
 
-
-
-            //var queryString = Request.GetQueryNameValuePairs();
-
-            //DateTime fechaDesde = DateTime.MinValue;
-            //DateTime fechaHasta = DateTime.MaxValue;
-
-            //string formatoFecha = "yyyy-MM-ddTHH:mm";
-            //try
-            //{
-            //    if (desde != "")
-            //        fechaDesde = DateTime.ParseExact(desde, formatoFecha, System.Globalization.CultureInfo.InvariantCulture);
-            //    if (hasta != "")
-            //        fechaHasta = DateTime.ParseExact(hasta, formatoFecha, System.Globalization.CultureInfo.InvariantCulture);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    return Request.CreateResponse(HttpStatusCode.BadRequest, "Formato de fechas incorrecto");
-            //}
-
-            //string mensaje = "Metodo Get all ";
-            //if (fechaDesde != DateTime.MinValue)
-            //    mensaje += " Desde " + fechaDesde.ToString();
-
-            //if (fechaHasta != DateTime.MaxValue)
-            //    mensaje += " Hasta " + fechaHasta.ToString();
-
-
-            
         }
 
+        private HttpResponseMessage GestionarErrorGetTranscripciones(HttpResponseException ex)
+        {
+            switch (ex.Response.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized:
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
 
+                case HttpStatusCode.BadRequest:
+                    string mensajeError = string.Format(Configuracion.ObtenerMensajeTexto("FormatoIncorrectoGetTranscripciones"), Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING);
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, mensajeError);
 
-        // api/Transcripciones/{id}
-        public HttpResponseMessage Get(int id)
+                default:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+            }
+        }
+
+        // [GET] api/Transcripciones/{id}
+        public HttpResponseMessage GetTranscripcion(int id)
         {
             try
             {
@@ -105,27 +76,68 @@ namespace WebApi.Controllers
             }
             catch (HttpResponseException ex)
             {
-                switch (ex.Response.StatusCode)
-                {
-                    case HttpStatusCode.Unauthorized:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Usuario no válido");
-
-                    case HttpStatusCode.NotFound:
-                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Transcripción no encontrada");
-
-                    case HttpStatusCode.NoContent:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "La transcripción aún no se ha realizado");
-
-                    case HttpStatusCode.InternalServerError:
-                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Ha ocurrido un error al realizar la transcripción");
-
-                    default:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Ha ocurrido un error");
-
-                }
-
+                return GestionarErrorGetTranscripcion(ex);
             }
 
         }
+
+        private HttpResponseMessage GestionarErrorGetTranscripcion(HttpResponseException ex)
+        {
+            switch (ex.Response.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized:
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+
+                case HttpStatusCode.NotFound:
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, Configuracion.ObtenerMensajeTexto("TranscripcionNoEncontrada"));
+
+                case HttpStatusCode.NoContent:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("TranscripcionPendiente"));
+
+                case HttpStatusCode.InternalServerError:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("TranscripcionConErrores"));
+
+                default:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+            }
+        }
+
+        // [POST] api/Transcripciones
+        public HttpResponseMessage PostTranscripcion()
+        {
+            try
+            {
+                string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
+                new TranscripcionesBR().GrabarFicheroRecibido(bo, HttpContext.Current.Request, loginUsuario);
+                return Request.CreateResponse(HttpStatusCode.Created, "La llamada se ha procesado con éxito");
+            }
+            catch (HttpResponseException ex)
+            {
+                return GestionarErrorPutTranscripcion(ex);
+            }
+        }
+
+        private HttpResponseMessage GestionarErrorPutTranscripcion(HttpResponseException ex)
+        {
+            switch (ex.Response.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized:
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+
+                case HttpStatusCode.BadRequest:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("FicheroMp3NoEncontrado"));
+
+                case HttpStatusCode.RequestEntityTooLarge:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("FicheroExcedeTamanyoMaximo"));
+
+                case HttpStatusCode.UnsupportedMediaType:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("FormatoFicheroNoValido"));
+
+                default:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+
+            }
+        }
+
     }
 }

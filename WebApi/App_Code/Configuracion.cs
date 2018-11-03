@@ -1,4 +1,6 @@
-﻿namespace WebApi.Comun
+﻿using System.Web;
+
+namespace WebApi.Comun
 {
     public static class Configuracion
     {
@@ -9,5 +11,10 @@
         public const string EXTENSION_FICHEROS_AUDIO = ".MP3";
         public const int NUMERO_CARACTERES_TRANSCRIPCIONES_ID = 10;
         public const string FORMATO_FECHA_VARIABLE_QUERYSTRING = "yyyy-MM-ddTHH:mm";
+
+        public static string ObtenerMensajeTexto(string clave)
+        {
+            return (string)HttpContext.GetGlobalResourceObject("Mensajes", clave);
+        }
     }
 }

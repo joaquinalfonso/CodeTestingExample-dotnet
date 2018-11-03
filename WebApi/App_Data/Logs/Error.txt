@@ -10,3 +10,5 @@
 2018-11-02 18:00:00.6086| Error | Quartz.Core.JobRunShell+<Run>d__9.MoveNext | Job DEFAULT.23ec551c-483d-48af-86e3-a62b2d5c623b threw an unhandled Exception: 
 2018-11-02 18:00:00.6276| Error | Quartz.Core.ErrorLogger.SchedulerError | Job DEFAULT.23ec551c-483d-48af-86e3-a62b2d5c623b threw an exception.
 2018-11-02 18:00:00.6276| Error | Quartz.Core.ErrorLogger.SchedulerError | Job DEFAULT.23ec551c-483d-48af-86e3-a62b2d5c623b threw an exception.
+2018-11-03 17:17:41.9593| Error | WebApi.Controllers.TranscripcionesBO.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-03 17:17:41.9593| Error | WebApi.Controllers.TranscripcionesBO.ProcesarTranscripcion | Error al hacer la transcripción

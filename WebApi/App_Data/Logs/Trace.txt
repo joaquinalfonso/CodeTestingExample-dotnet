@@ -68,3 +68,6 @@
 2018-11-03 13:16:31.0969| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 54 Transcripcion 9
 2018-11-03 13:16:31.2176| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 54 Transcripcion 10
 2018-11-03 13:21:20.8725| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 17:00:59.2242| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 17:17:40.7843| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 17:17:41.8446| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 11
