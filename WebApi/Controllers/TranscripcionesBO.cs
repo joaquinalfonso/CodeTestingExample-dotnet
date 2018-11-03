@@ -21,15 +21,13 @@ namespace WebApi.Controllers
             return db.Transcripciones.FirstOrDefault((p) => p.Id == id && p.LoginUsuario == login);
         }
 
-        
-
         public List<TranscripcionDTO> ObtenerTranscripciones(ParametrosGetTranscripcionesTO parametros)
         {
 
             IQueryable<Transcripcion> list = from g in db.Transcripciones
                                              where g.LoginUsuario == parametros.Login &&
-                                                  (g.FechaHoraRecepcion >= parametros.Desde || parametros.Desde == null) &&
-                                                  (g.FechaHoraRecepcion <= parametros.Hasta || parametros.Hasta == null)
+                                                  (g.FechaHoraRecepcion >= parametros.FechaDesde || parametros.FechaDesde == null) &&
+                                                  (g.FechaHoraRecepcion <= parametros.FechaHasta || parametros.FechaHasta == null)
                                              select g;
 
             List<TranscripcionDTO> listaTranscripciones = new List<TranscripcionDTO>();
@@ -60,8 +58,6 @@ namespace WebApi.Controllers
 
         public void ProcesarTranscripciones(List<Transcripcion> transcripcionesPendientes)
         {
-
-            //Random r = new Random();
             var cacheTranscripcionesPendientes = new CacheTranscripcionesPendientes(transcripcionesPendientes);
             var procesos = new List<Task>();
 
@@ -93,8 +89,9 @@ namespace WebApi.Controllers
 
             try
             {
-
-                string textoTranscrito = new INVOXMedicalMock().TranscribirFicheroMp3(transcripcion.LoginUsuario, null);
+                Byte[] ficheroMp3 = new FicherosBR().ObtenerFicheroMp3(transcripcion.Id);
+                
+                string textoTranscrito = new INVOXMedicalMock().TranscribirFicheroMp3(transcripcion.LoginUsuario, ficheroMp3);
 
                 new FicherosBR().GrabarFicheroTextoTranscrito(transcripcion.Id, textoTranscrito);
 

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Description;
 using WebApi.App_Code;
 using WebApi.Comun;
 using WebApi.Models;
@@ -14,7 +11,7 @@ namespace WebApi.Controllers
 {
     public class TranscripcionesController : ApiController
     {
-        
+
         private ITranscripcionesBO bo;
 
         public TranscripcionesController()
@@ -27,283 +24,118 @@ namespace WebApi.Controllers
             this.bo = transcripcionesBO;
         }
 
-
-        //[System.Web.Http.Route("Transcripciones/{desde:DateTime?}&{hasta:DateTime?}")]
-        //[System.Web.Http.AcceptVerbs("GET")]
-        //[System.Web.Http.HttpGet]
-        //public IHttpActionResult GetAllTranscripciones(DateTime? desde = null, DateTime? hasta = null)
-        //{
-        //    ParametrosGetTranscripcionesTO parametrosRequest = new ParametrosGetTranscripcionesTO();
-        //    parametrosRequest.Desde = desde;
-        //    parametrosRequest.Hasta = hasta;
-
-        //    List<TranscripcionDTO> listaTranscripciones = bo.ObtenerTranscripciones(parametrosRequest);
-
-
-        //    //TODO: Si la lista es vacia devolver un 204            
-        //    return Ok(listaTranscripciones);
-        //}
-
-        public IHttpActionResult GetAllTranscripciones()
+        // [GET] api/Transcripciones
+        // [GET] api/Transcripciones?desde=yyyy-MM-ddTHH:mm
+        // [GET] api/Transcripciones?hasta=yyyy-MM-ddTHH:mm
+        // [GET] api/Transcripciones?desde=yyyy-MM-ddTHH:mm&hasta=yyyy-MM-ddTHH:mm
+        public HttpResponseMessage GetTranscripciones(string desde = "", string hasta = "")
         {
-            string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-
-            ParametrosGetTranscripcionesTO parametrosRequest = new ParametrosGetTranscripcionesTO { Login = loginUsuario };
-
-            //TODO: Validar formato de fechas
-            if (parametrosRequest.Login == null)
-            {
-                return BadRequest();
-            }
-
-            List<TranscripcionDTO> listaTranscripciones = bo.ObtenerTranscripciones(parametrosRequest);
-
-
-            //TODO: Si la lista es vacia devolver un 204            
-            return Ok(listaTranscripciones);
-
-        }
-
-
-        public IHttpActionResult GetAllTranscripcionesFecha([FromUri]ParametrosGetTranscripcionesTO parametrosRequest)
-        {
-            string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-
-            parametrosRequest.Login = loginUsuario;
-            //ParametrosGetTranscripcionesTO parametrosRequest = new ParametrosGetTranscripcionesTO { Login = loginUsuario, Desde = desde, Hasta = hasta };
-
-            //TODO: Validar formato de fechas
-            if (parametrosRequest.Login == null)
-            {
-                return BadRequest();
-            }
-
-            List<TranscripcionDTO> listaTranscripciones = bo.ObtenerTranscripciones(parametrosRequest);
-
-
-            //TODO: Si la lista es vacia devolver un 204            
-            return Ok(listaTranscripciones);
-
-        }
-
-        /*
-    [ResponseType(typeof(TranscripcionDTO))]
-    public IHttpActionResult GetAllTranscripciones([FromUri]ParametrosGetTranscripcionesTO parametrosRequest)
-    {
-        //string loginUsuario = new ApiBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-
-        //TODO: Validar formato de fechas
-        if (parametrosRequest.Login == null)
-        {
-            return BadRequest();
-        }
-
-        List<TranscripcionDTO> listaTranscripciones = bo.ObtenerTranscripciones(parametrosRequest);
-
-
-        //TODO: Si la lista es vacia devolver un 204            
-        return Ok(listaTranscripciones);
-
-    }
-    */
-
-        // GET: api/Transcripcion/5
-        //[ResponseType(typeof(Transcripcion))]
-        public IHttpActionResult GetTranscripcion(int id)
-        {             
-            string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-
-            Transcripcion transcripcion = bo.ObtenerTranscripcion(id, loginUsuario);
-                
-            // Flujo Alternativo A
-            if (transcripcion == null)
-            {
-                return NotFound();
-            }
-
-            // Flujo Alternativo B
-            if (transcripcion.Estado == TipoEstadoTranscripcion.PENDIENTE.ToString() || 
-                transcripcion.Estado == TipoEstadoTranscripcion.EN_PROGRESO.ToString())
-            {
-                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.BadRequest, "La transcripción aún no se ha realizado"));
-            }
-
-            // Flujo Alternativo C
-            if (transcripcion.Estado == TipoEstadoTranscripcion.ERROR.ToString())
-            {
-                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Ha ocurrido un error al realizar la transcripción"));
-            }
-            
-
-            if (transcripcion.Estado == TipoEstadoTranscripcion.REALIZADA.ToString() && 
-                new FicherosBR().ExisteFicheroTranscritoTxt(transcripcion.Id))
-            {
-                return Ok(new FicherosBR().ObtenerFicheroTranscritoTxt(transcripcion.Id));
-            }
-
-            return NotFound();
-        }
-
-        
-
-
-
-        // PUT: api/Transcripciones/5
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PutTranscripciones(string id, Transcripciones transcripciones)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (id != transcripciones.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(transcripciones).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!TranscripcionesExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-        //// POST: api/Transcripciones
-        //[ResponseType(typeof(Transcripciones))]
-        //public IHttpActionResult PostTranscripciones(Transcripciones transcripciones)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Transcripciones.Add(transcripciones);
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (TranscripcionesExists(transcripciones.Id))
-        //        {
-        //            return Conflict();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return CreatedAtRoute("DefaultApi", new { id = transcripciones.Id }, transcripciones);
-        //}
-
-        public HttpResponseMessage PostTranscripciones(string Login)
-        {
-            //string loginUsuario = new ApiBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-
-            // Validar login 
-            // Validar tamaño y tipo
-            // Pasar a clase BO login y archivo
-
-            
             try
             {
-                var httpRequest = HttpContext.Current.Request;
-                if (httpRequest.Files.Count < 1)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
-                }
+                ParametrosGetTranscripcionesTO parametrosConsulta = new TranscripcionesBR().ObtenerParametrosConsultaGetTranscripciones(Request, desde, hasta);
+                parametrosConsulta.Login = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
+                List<TranscripcionDTO> listaTranscripciones = bo.ObtenerTranscripciones(parametrosConsulta);
 
-                foreach (string file in httpRequest.Files)
-                {
-                    var postedFile = httpRequest.Files[file];
-
-                    try
-                    {
-                        new TranscripcionesBR().ValidarFichero(postedFile);
-                    }
-                    catch (HttpResponseException excepcion)
-                    {
-                        string mensajeError = "";
-                        mensajeError += excepcion.Response.StatusCode == HttpStatusCode.RequestEntityTooLarge ? "Archivo excede tamaño máximo (5Mb)" : "";
-                        mensajeError += excepcion.Response.StatusCode == HttpStatusCode.UnsupportedMediaType ? "Formato de archivo no válido" : "";
-
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, mensajeError);
-                    }
-
-                    int idTranscripcion = bo.ObtenerNuevoIdTranscripcion();
-
-                    new TranscripcionesBR().GrabarFicheroMp3(postedFile, idTranscripcion);
-
-                    Transcripcion transcripcion = new Transcripcion
-                    {
-                        Id = idTranscripcion,
-                        FechaHoraRecepcion = DateTime.Now,
-                        LoginUsuario = Login,
-                        NombreArchivo = postedFile.FileName,
-                        Estado = TipoEstadoTranscripcion.PENDIENTE.ToString()
-                    };
-
-                    bo.InsertarTranscripcion(transcripcion);
-
-                }
-
+                return Request.CreateResponse(HttpStatusCode.OK, listaTranscripciones);
             }
-            catch(Exception excepcion)
+            catch (HttpResponseException ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, excepcion.Message);
+                return GestionarErrorGetTranscripciones(ex);
             }
-            
 
-            return Request.CreateResponse(HttpStatusCode.Created, "La llamada se ha procesado con éxito");
         }
 
-        
+        private HttpResponseMessage GestionarErrorGetTranscripciones(HttpResponseException ex)
+        {
+            switch (ex.Response.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized:
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
 
-        // DELETE: api/Transcripciones/5
-        //[ResponseType(typeof(Transcripciones))]
-        //public IHttpActionResult DeleteTranscripciones(string id)
-        //{
-        //    Transcripciones transcripciones = db.Transcripciones.Find(id);
-        //    if (transcripciones == null)
-        //    {
-        //        return NotFound();
-        //    }
+                case HttpStatusCode.BadRequest:
+                    string mensajeError = string.Format(Configuracion.ObtenerMensajeTexto("FormatoIncorrectoGetTranscripciones"), Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING);
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, mensajeError);
 
-        //    db.Transcripciones.Remove(transcripciones);
-        //    db.SaveChanges();
+                default:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+            }
+        }
 
-        //    return Ok(transcripciones);
-        //}
+        // [GET] api/Transcripciones/{id}
+        public HttpResponseMessage GetTranscripcion(int id)
+        {
+            try
+            {
+                string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
+                Transcripcion transcripcion = new TranscripcionesBR().ObtenerTranscripcionRealizada(bo, id, loginUsuario);
+                string textoTranscrito = new TranscripcionesBR().ObtenerFicheroTranscritoTxt(transcripcion);
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+                return Request.CreateResponse(HttpStatusCode.OK, textoTranscrito);
+            }
+            catch (HttpResponseException ex)
+            {
+                return GestionarErrorGetTranscripcion(ex);
+            }
 
-        //private bool TranscripcionesExists(string id)
-        //{
-        //    return db.Transcripciones.Count(e => e.Id == id) > 0;
-        //}
+        }
+
+        private HttpResponseMessage GestionarErrorGetTranscripcion(HttpResponseException ex)
+        {
+            switch (ex.Response.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized:
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+
+                case HttpStatusCode.NotFound:
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, Configuracion.ObtenerMensajeTexto("TranscripcionNoEncontrada"));
+
+                case HttpStatusCode.NoContent:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("TranscripcionPendiente"));
+
+                case HttpStatusCode.InternalServerError:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("TranscripcionConErrores"));
+
+                default:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+            }
+        }
+
+        // [POST] api/Transcripciones
+        public HttpResponseMessage PostTranscripcion()
+        {
+            try
+            {
+                string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
+                new TranscripcionesBR().GrabarFicheroRecibido(bo, HttpContext.Current.Request, loginUsuario);
+                return Request.CreateResponse(HttpStatusCode.Created, "La llamada se ha procesado con éxito");
+            }
+            catch (HttpResponseException ex)
+            {
+                return GestionarErrorPutTranscripcion(ex);
+            }
+        }
+
+        private HttpResponseMessage GestionarErrorPutTranscripcion(HttpResponseException ex)
+        {
+            switch (ex.Response.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized:
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+
+                case HttpStatusCode.BadRequest:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("FicheroMp3NoEncontrado"));
+
+                case HttpStatusCode.RequestEntityTooLarge:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("FicheroExcedeTamanyoMaximo"));
+
+                case HttpStatusCode.UnsupportedMediaType:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("FormatoFicheroNoValido"));
+
+                default:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+
+            }
+        }
+
     }
 }

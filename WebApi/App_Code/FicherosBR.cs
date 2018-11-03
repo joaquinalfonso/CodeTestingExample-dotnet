@@ -29,11 +29,7 @@ namespace WebApi.App_Code
 
             string contenidoFicheroTxt = "";
             contenidoFicheroTxt = File.ReadAllText(rutaFicheroTxt, System.Text.Encoding.UTF8);
-            //using (StreamReader sr = new StreamReader(rutaFicheroTxt, System.Text.Encoding.Default, false))
-            //{
-            //    contenidoFicheroTxt = sr.ReadToEnd().Replace("\r\n", " ");
-            //}
-
+            
             return contenidoFicheroTxt;
         }
 
@@ -41,6 +37,22 @@ namespace WebApi.App_Code
         {
             string rutaFicheroTranscrito = ObtenerRutaFicheroTranscritoTxt(id);
             File.WriteAllText(rutaFicheroTranscrito, textoTranscrito);
+        }
+
+
+        private string ObtenerRutaFicheroMp3(int id)
+        {
+            string rutaFicherosMp3 = System.Web.Hosting.HostingEnvironment.MapPath(Configuracion.RUTA_FICHEROS_MP3);            
+            return string.Format("{0}{1}.mp3", rutaFicherosMp3, id);
+        }
+
+        public byte[] ObtenerFicheroMp3(int id)
+        {
+            string rutaFicheroMp3 = ObtenerRutaFicheroMp3(id);
+
+            byte[] ficheroMp3 = File.ReadAllBytes(rutaFicheroMp3);
+
+            return ficheroMp3;
         }
     }
 }

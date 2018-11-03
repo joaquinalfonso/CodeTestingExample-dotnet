@@ -65,21 +65,27 @@ namespace WebApi.Controllers
         {
             ParametrosGetTranscripcionesTO parametros = new ParametrosGetTranscripcionesTO();
 
-            //TODO: comprobar que estan los nombres de parametros "desde o hasta"
-            var queryString = request.GetQueryNameValuePairs();
-
+            //comprobar que los nombres de parametros son "desde o hasta"
+            var queryString = request.GetQueryNameValuePairs().ToDictionary(x => x.Key, x => x.Value).ToList();
+            queryString.ForEach(x =>
+            {
+                if (x.Key.ToUpper() != "DESDE" && x.Key.ToUpper() != "HASTA")
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            );
+            
             try
             {
 
                 if (desde != "")
-                    parametros.Desde = DateTime.ParseExact(desde, Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING, System.Globalization.CultureInfo.InvariantCulture);
+                    parametros.FechaDesde = DateTime.ParseExact(desde, Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING, System.Globalization.CultureInfo.InvariantCulture);
                 if (hasta != "")
-                    parametros.Hasta = DateTime.ParseExact(hasta, Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING, System.Globalization.CultureInfo.InvariantCulture);
+                    parametros.FechaHasta = DateTime.ParseExact(hasta, Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING, System.Globalization.CultureInfo.InvariantCulture);
 
                 return parametros;
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }

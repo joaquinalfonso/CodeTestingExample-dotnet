@@ -7,7 +7,7 @@ namespace WebApi.INVOX
 {
     public class INVOXMedicalMock
     {
-        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         private List<string> FicherosTextoPredefinidos;
         private int probabilidadError;
 
@@ -20,11 +20,11 @@ namespace WebApi.INVOX
 
         }
 
-        public string TranscribirFicheroMp3(string login,  byte[] ficheroMp3)
-        {           
+        public string TranscribirFicheroMp3(string login, byte[] ficheroMp3)
+        {
             ProvocarErrorAleatorio(probabilidadError);
-            int numeroAleatorio = ObtenerNumeroAleatorio(FicherosTextoPredefinidos.Count);   
-            return ObtenerFichero(FicherosTextoPredefinidos[numeroAleatorio]);           
+            int numeroAleatorio = ObtenerNumeroAleatorio(FicherosTextoPredefinidos.Count);
+            return ObtenerFichero(FicherosTextoPredefinidos[numeroAleatorio]);
         }
 
         private void ProvocarErrorAleatorio(int probabilidadError)
@@ -60,17 +60,11 @@ namespace WebApi.INVOX
         {
             List<string> listaFicheros = new List<string>();
 
-            try
-            {
-                DirectoryInfo directory = new DirectoryInfo(rutaCarpeta);
-                FileInfo[] ficheros = directory.GetFiles("*.txt");
+            DirectoryInfo directory = new DirectoryInfo(rutaCarpeta);
+            FileInfo[] ficheros = directory.GetFiles("*.txt");
 
-                ficheros.ToList().ForEach(fichero => listaFicheros.Add(fichero.FullName));
-            }
-            catch
-            {
-                // TODO: LOG
-            }
+            ficheros.ToList().ForEach(fichero => listaFicheros.Add(fichero.FullName));
+
 
             return listaFicheros;
         }
