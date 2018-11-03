@@ -1,0 +1,70 @@
+2018-11-02 13:56:35.6871| Trace | WebApiCrud.Controllers.TareaMinuto+<>c.<Execute>b__4_0 | Tarea minuto
+2018-11-02 13:56:35.7220| Trace | WebApiCrud.Controllers.TareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 13:56:36.3265| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 45 Transcripcion WNGPQ
+2018-11-02 13:56:36.3265| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 44 Transcripcion A1
+2018-11-02 13:56:36.3265| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion A2
+2018-11-02 13:56:36.3824| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 45 Transcripcion 6JWLE
+2018-11-02 13:56:36.3824| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 44 Transcripcion YXQRP
+2018-11-02 13:56:36.4173| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 44 Transcripcion G1ZFK
+2018-11-02 13:56:36.3824| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion YI1OW
+2018-11-02 13:56:36.4462| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 44 Transcripcion 7S2O5
+2018-11-02 13:56:36.4602| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion O4K58
+2018-11-02 13:56:36.4312| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 45 Transcripcion ROIN4
+2018-11-02 13:56:36.4602| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 44 Transcripcion J1X4N
+2018-11-02 13:56:36.4871| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 863RM
+2018-11-02 13:57:35.4206| Trace | WebApiCrud.Controllers.TareaMinuto+<>c.<Execute>b__4_0 | Tarea minuto
+2018-11-02 13:58:35.3806| Trace | WebApiCrud.Controllers.TareaMinuto+<>c.<Execute>b__4_0 | Tarea minuto
+2018-11-02 14:02:01.8207| Trace | WebApiCrud.Controllers.TareaMinuto+<>c.<Execute>b__4_0 | Tarea minuto
+2018-11-02 14:02:01.8656| Trace | WebApiCrud.Controllers.TareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 14:02:03.6840| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 44 Transcripcion NNRGX
+2018-11-02 14:03:01.0947| Trace | WebApiCrud.Controllers.TareaMinuto+<>c.<Execute>b__4_0 | Tarea minuto
+2018-11-02 14:04:01.1196| Trace | WebApiCrud.Controllers.TareaMinuto+<>c.<Execute>b__4_0 | Tarea minuto
+2018-11-02 14:05:01.0934| Trace | WebApiCrud.Controllers.TareaMinuto+<>c.<Execute>b__4_0 | Tarea minuto
+2018-11-02 14:30:11.0151| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 16:38:54.5539| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 16:38:58.0866| Trace | WebApiCrud.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 5EO0L
+2018-11-02 17:54:07.5630| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 17:55:29.9573| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 17:59:13.8596| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 18:07:10.1078| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 18:09:25.8551| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-02 22:09:16.0927| Trace | WebApiCrud.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 00:05:29.4571| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 00:53:35.2465| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 01:14:38.1056| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 02:00:57.5440| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 02:09:57.4550| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 02:28:58.1981| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 02:39:22.0402| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 02:41:06.3909| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 02:43:03.6852| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 09:46:30.7053| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 09:48:13.8751| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 09:49:07.7397| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 10:03:45.5589| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 10:04:37.0468| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 10:09:15.4712| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 10:47:51.3208| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 10:54:46.0597| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 10:54:48.9819| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 45 Transcripcion 1
+2018-11-03 10:56:22.3000| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 12:10:44.3172| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 12:15:20.3523| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 12:15:21.5626| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 45 Transcripcion 2
+2018-11-03 12:15:21.5626| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 3
+2018-11-03 12:18:29.7318| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 12:18:30.2719| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 4
+2018-11-03 12:20:20.4801| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 12:20:21.9332| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 5
+2018-11-03 12:22:31.9248| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 12:22:32.3936| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 6
+2018-11-03 12:25:40.4954| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 12:32:56.0160| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 12:39:09.3468| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 12:43:10.1696| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 13:16:30.1689| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-03 13:16:31.0969| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 53 Transcripcion 7
+2018-11-03 13:16:31.0969| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 52 Transcripcion 8
+2018-11-03 13:16:31.0969| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 54 Transcripcion 9
+2018-11-03 13:16:31.2176| Trace | WebApi.Controllers.TranscripcionesBO+<>c__DisplayClass5_0.<ProcesarTranscripciones>b__0 | Proceso 54 Transcripcion 10
+2018-11-03 13:21:20.8725| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
