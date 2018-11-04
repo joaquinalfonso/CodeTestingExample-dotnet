@@ -19,7 +19,7 @@ namespace WebApi.Negocio.Tests
                 new Transcripcion { Id = 3, FechaHoraRecepcion = new DateTime(2018, 11, 3, 8, 30, 0), LoginUsuario = "Usuario2", NombreArchivo = "Archivo3.mp3", Estado = TipoEstadoTranscripcion.PENDIENTE.ToString() },
             };
 
-        public Mock<VocaliEntities> ObtenerDBMock()
+        private Mock<VocaliEntities> ObtenerDBMock()
         {
             var data = datos.AsQueryable();
 
@@ -37,7 +37,7 @@ namespace WebApi.Negocio.Tests
         
 
         [TestMethod]
-        public void ObtenerNuevoIdTranscripcion()
+        public void ObtenerNuevoIdTranscripcion_OK()
         {
             var bo = new TranscripcionesBO(ObtenerDBMock().Object);
             int id = bo.ObtenerNuevoIdTranscripcion();

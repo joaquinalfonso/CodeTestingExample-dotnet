@@ -14,6 +14,7 @@ namespace WebApi.Negocio
     public class TranscripcionesBO : ITranscripcionesBO
     {
         private VocaliEntities db = new VocaliEntities();
+        private VocaliEntities dbPruebas = null;
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         
 
@@ -24,6 +25,7 @@ namespace WebApi.Negocio
         public TranscripcionesBO(VocaliEntities contextoDatos)
         {
             db = contextoDatos;
+            dbPruebas = contextoDatos;
         }
 
 
@@ -155,10 +157,15 @@ namespace WebApi.Negocio
 
         }
 
-        public void ActualizarTranscripcion(Transcripcion transcripcion)
+        private VocaliEntities ObtenerContextoDB()
+        {
+            return (dbPruebas == null) ? new VocaliEntities() : dbPruebas;
+        }
+
+        private void ActualizarTranscripcion(Transcripcion transcripcion)
         {
             //Se crea un dbcontext nuevo porque no soporta operaciones con hilos
-            VocaliEntities dbIndependiente = new VocaliEntities();
+            VocaliEntities dbIndependiente = ObtenerContextoDB();
 
             dbIndependiente.Entry(transcripcion).State = EntityState.Modified;
 
@@ -254,7 +261,7 @@ namespace WebApi.Negocio
 
         public void InsertarTranscripcion(Transcripcion transcripcion)
         {
-            VocaliEntities dbIndependiente = new VocaliEntities();
+            VocaliEntities dbIndependiente = ObtenerContextoDB();
 
             dbIndependiente.Transcripciones.Add(transcripcion);
 
