@@ -3,9 +3,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using WebApi.App_Code;
 using WebApi.Comun;
 using WebApi.Models;
+using WebApi.Negocio;
 
 namespace WebApi.Controllers
 {
@@ -32,7 +32,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                ParametrosGetTranscripcionesTO parametrosConsulta = new TranscripcionesBR().ObtenerParametrosConsultaGetTranscripciones(Request, desde, hasta);
+                ParametrosGetTranscripcionesTO parametrosConsulta = new TranscripcionesBR().ObtenerYValidarParametrosConsultaGetTranscripciones(Request, desde, hasta);
                 parametrosConsulta.Login = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
                 List<TranscripcionDTO> listaTranscripciones = bo.ObtenerTranscripciones(parametrosConsulta);
 
@@ -67,8 +67,8 @@ namespace WebApi.Controllers
             try
             {
                 string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-                Transcripcion transcripcion = new TranscripcionesBR().ObtenerTranscripcionRealizada(bo, id, loginUsuario);
-                string textoTranscrito = new TranscripcionesBR().ObtenerFicheroTranscritoTxt(transcripcion);
+                Transcripcion transcripcion = bo.ObtenerTranscripcionRealizada(id, loginUsuario);
+                string textoTranscrito = bo.ObtenerFicheroTranscritoTxt(transcripcion);
 
                 return Request.CreateResponse(HttpStatusCode.OK, textoTranscrito);
             }
@@ -106,7 +106,7 @@ namespace WebApi.Controllers
             try
             {
                 string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-                new TranscripcionesBR().GrabarFicheroRecibido(bo, HttpContext.Current.Request, loginUsuario);
+                HttpPostedFile ficheroRecibido = new TranscripcionesBR().ValidarYExtraerFicheroRecibido(HttpContext.Current.Request, loginUsuario);
                 return Request.CreateResponse(HttpStatusCode.Created, "La llamada se ha procesado con éxito");
             }
             catch (HttpResponseException ex)

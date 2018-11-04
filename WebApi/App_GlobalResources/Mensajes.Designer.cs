@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a La transcripción no se ha podido almacenar.
+        /// </summary>
+        internal static string TranscripcionNoGuardada {
+            get {
+                return ResourceManager.GetString("TranscripcionNoGuardada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a La transcripción aún no se ha realizado.
         /// </summary>
         internal static string TranscripcionPendiente {

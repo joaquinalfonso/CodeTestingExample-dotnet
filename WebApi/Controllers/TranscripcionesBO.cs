@@ -3,22 +3,131 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
-using WebApi.App_Code;
+using System.Web;
+using System.Web.Http;
 using WebApi.Comun;
 using WebApi.INVOX;
 using WebApi.Models;
 
-namespace WebApi.Controllers
+namespace WebApi.Negocio
 {
     public class TranscripcionesBO : ITranscripcionesBO
     {
         private VocaliEntities db = new VocaliEntities();
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public Transcripcion ObtenerTranscripcion(int id, string login)
+        public Transcripcion ObtenerTranscripcionRealizada(int id, string login)
         {
-            return db.Transcripciones.FirstOrDefault((p) => p.Id == id && p.LoginUsuario == login);
+            Transcripcion transcripcion = db.Transcripciones.FirstOrDefault((p) => p.Id == id && p.LoginUsuario == login);
+
+            // Flujo Alternativo A
+            if (transcripcion == null)
+            {
+                throw new TranscripcionNoEncontradaException();
+                  //  HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            // Flujo Alternativo B
+            if (transcripcion.Estado == TipoEstadoTranscripcion.PENDIENTE.ToString() ||
+                transcripcion.Estado == TipoEstadoTranscripcion.EN_PROGRESO.ToString())
+            {
+                throw new TranscripcionNoEncontradaException();
+                //throw new HttpResponseException(HttpStatusCode.NoContent);
+            }
+
+            // Flujo Alternativo C
+            if (transcripcion.Estado == TipoEstadoTranscripcion.ERROR.ToString())
+            {
+                throw new TranscripcionNoEncontradaException();
+                //throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
+
+            return transcripcion;
+        }
+
+        public string ObtenerFicheroTranscritoTxt(Transcripcion transcripcion)
+        {
+
+            string texto = "";
+
+            if (transcripcion == null)
+            {
+                throw new TranscripcionNoEncontradaException();
+            }
+
+            if (transcripcion.Estado != TipoEstadoTranscripcion.REALIZADA.ToString())
+            {
+                throw new TranscripcionPendienteException();
+            }
+
+            try
+            {
+                if (ExisteFicheroTranscritoTxt(transcripcion.Id))
+                {
+                    texto = ObtenerFicheroTranscritoTxt(transcripcion.Id);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, ex.Message);
+                throw new TranscripcionErroneaException("ObtenerFicheroTranscritoTxt", ex);
+            }
+
+            if (String.IsNullOrEmpty(texto))
+            {
+                throw new TranscripcionErroneaException();
+            }
+
+            return texto;
+
+        }
+
+
+        private string ObtenerFicheroTranscritoTxt(int id)
+        {
+            string rutaFicheroTxt = ObtenerRutaFicheroTranscritoTxt(id);
+
+            string contenidoFicheroTxt = "";
+            contenidoFicheroTxt = File.ReadAllText(rutaFicheroTxt, System.Text.Encoding.UTF8);
+
+            return contenidoFicheroTxt;
+        }
+
+        private string ObtenerRutaFicheroTranscritoTxt(int id)
+        {
+            string rutaFicherosTranscripciones = System.Web.Hosting.HostingEnvironment.MapPath(Configuracion.RUTA_FICHEROS_TRANSCRITOS);
+            var rutaFicheroTxt = rutaFicherosTranscripciones + string.Format("{0}.txt", id);
+            return rutaFicheroTxt;
+        }
+
+        public bool ExisteFicheroTranscritoTxt(int id)
+        {
+            string rutaFicheroTxt = ObtenerRutaFicheroTranscritoTxt(id);
+            return File.Exists(rutaFicheroTxt);
+        }
+
+        public void GrabarFicheroTextoTranscrito(int id, string textoTranscrito)
+        {
+            string rutaFicheroTranscrito = ObtenerRutaFicheroTranscritoTxt(id);
+            File.WriteAllText(rutaFicheroTranscrito, textoTranscrito);
+        }
+
+
+        private string ObtenerRutaFicheroMp3(int id)
+        {
+            string rutaFicherosMp3 = System.Web.Hosting.HostingEnvironment.MapPath(Configuracion.RUTA_FICHEROS_MP3);
+            return string.Format("{0}{1}.mp3", rutaFicherosMp3, id);
+        }
+
+        public byte[] ObtenerFicheroMp3(int id)
+        {
+            string rutaFicheroMp3 = ObtenerRutaFicheroMp3(id);
+
+            byte[] ficheroMp3 = File.ReadAllBytes(rutaFicheroMp3);
+
+            return ficheroMp3;
         }
 
         public List<TranscripcionDTO> ObtenerTranscripciones(ParametrosGetTranscripcionesTO parametros)
@@ -89,11 +198,11 @@ namespace WebApi.Controllers
 
             try
             {
-                Byte[] ficheroMp3 = new FicherosBR().ObtenerFicheroMp3(transcripcion.Id);
+                Byte[] ficheroMp3 = ObtenerFicheroMp3(transcripcion.Id);
                 
                 string textoTranscrito = new INVOXMedicalMock().TranscribirFicheroMp3(transcripcion.LoginUsuario, ficheroMp3);
 
-                new FicherosBR().GrabarFicheroTextoTranscrito(transcripcion.Id, textoTranscrito);
+                GrabarFicheroTextoTranscrito(transcripcion.Id, textoTranscrito);
 
                 nuevoEstadoTranscripcion = TipoEstadoTranscripcion.REALIZADA.ToString();
 
@@ -160,6 +269,38 @@ namespace WebApi.Controllers
             return nuevoId;
         }
 
-        
+        public void RecibirFicheroATranscribir(HttpPostedFile fichero, string login)
+        {
+            try
+            {
+                int nuevoIdTranscripcion = ObtenerNuevoIdTranscripcion();
+
+                GrabarFicheroMp3(fichero, nuevoIdTranscripcion);
+
+                Transcripcion transcripcion = new Transcripcion
+                {
+                    Id = nuevoIdTranscripcion,
+                    FechaHoraRecepcion = DateTime.Now,
+                    LoginUsuario = login,
+                    NombreArchivo = fichero.FileName,
+                    Estado = TipoEstadoTranscripcion.PENDIENTE.ToString()
+                };
+
+                InsertarTranscripcion(transcripcion);
+            }
+            catch(Exception ex)
+            {
+                logger.Error(ex, ex.Message);
+                throw new TranscripcionNoGuardadaException("RecibirFicheroATranscribir", ex);
+            }
+        }
+
+        private void GrabarFicheroMp3(HttpPostedFile postedFile, int idTranscripcion)
+        {
+            string rutaGuardado = HttpContext.Current.Server.MapPath(Configuracion.RUTA_FICHEROS_MP3);
+            var filePath = rutaGuardado + string.Format("{0}.mp3", idTranscripcion);
+
+            postedFile.SaveAs(filePath);
+        }
     }
 }

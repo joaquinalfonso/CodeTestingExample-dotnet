@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
-using WebApi.App_Code;
+using System.Web;
+using WebApi.Comun;
 using WebApi.Models;
 
-namespace WebApi.Controllers
+namespace WebApi.Negocio
 {
     public interface ITranscripcionesBO
     {
-        Transcripcion ObtenerTranscripcion(int id, string login);
+        Transcripcion ObtenerTranscripcionRealizada(int id, string login);
         List<TranscripcionDTO> ObtenerTranscripciones(ParametrosGetTranscripcionesTO parametros);
         int ObtenerNuevoIdTranscripcion();
         void InsertarTranscripcion(Transcripcion transcripcion);
@@ -14,5 +15,9 @@ namespace WebApi.Controllers
         void ProcesarTranscripcion(Transcripcion transcripcion);
         void ProcesarTranscripcionesPendientes();
         void ProcesarTranscripciones(List<Transcripcion> transcripciones);
-    }
+        string ObtenerFicheroTranscritoTxt(Transcripcion transcripcion);
+
+        void RecibirFicheroATranscribir(HttpPostedFile fichero, string login);
+
+        }
 }

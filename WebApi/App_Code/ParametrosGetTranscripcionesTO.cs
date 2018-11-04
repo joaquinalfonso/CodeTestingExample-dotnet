@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebApi.App_Code
+namespace WebApi.Comun
 {
     public class ParametrosGetTranscripcionesTO
     {

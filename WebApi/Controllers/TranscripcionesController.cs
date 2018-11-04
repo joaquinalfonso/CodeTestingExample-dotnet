@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using WebApi.App_Code;
 using WebApi.Comun;
 using WebApi.Models;
+using WebApi.Negocio;
 
 namespace WebApi.Controllers
 {
@@ -32,8 +33,8 @@ namespace WebApi.Controllers
         {
             try
             {
-                ParametrosGetTranscripcionesTO parametrosConsulta = new TranscripcionesBR().ObtenerParametrosConsultaGetTranscripciones(Request, desde, hasta);
-                parametrosConsulta.Login = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
+                ParametrosGetTranscripcionesTO parametrosConsulta = new TranscripcionesBR().ObtenerYValidarParametrosConsultaGetTranscripciones(Request, desde, hasta);
+
                 List<TranscripcionDTO> listaTranscripciones = bo.ObtenerTranscripciones(parametrosConsulta);
 
                 return Request.CreateResponse(HttpStatusCode.OK, listaTranscripciones);
@@ -50,7 +51,9 @@ namespace WebApi.Controllers
             switch (ex.Response.StatusCode)
             {
                 case HttpStatusCode.Unauthorized:
-                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, 
+                        //"Usuario no valido");
+                        Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
 
                 case HttpStatusCode.BadRequest:
                     string mensajeError = string.Format(Configuracion.ObtenerMensajeTexto("FormatoIncorrectoGetTranscripciones"), Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING);
@@ -67,37 +70,31 @@ namespace WebApi.Controllers
             try
             {
                 string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-                Transcripcion transcripcion = new TranscripcionesBR().ObtenerTranscripcionRealizada(bo, id, loginUsuario);
-                string textoTranscrito = new TranscripcionesBR().ObtenerFicheroTranscritoTxt(transcripcion);
+                Transcripcion transcripcion = bo.ObtenerTranscripcionRealizada(id, loginUsuario);
+                string textoTranscrito = bo.ObtenerFicheroTranscritoTxt(transcripcion);
 
                 return Request.CreateResponse(HttpStatusCode.OK, textoTranscrito);
             }
-            catch (HttpResponseException ex)
+            catch (Exception ex)
             {
                 return GestionarErrorGetTranscripcion(ex);
             }
 
         }
 
-        private HttpResponseMessage GestionarErrorGetTranscripcion(HttpResponseException ex)
+        private HttpResponseMessage GestionarErrorGetTranscripcion(Exception ex)
         {
-            switch (ex.Response.StatusCode)
-            {
-                case HttpStatusCode.Unauthorized:
-                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
-
-                case HttpStatusCode.NotFound:
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, Configuracion.ObtenerMensajeTexto("TranscripcionNoEncontrada"));
-
-                case HttpStatusCode.NoContent:
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("TranscripcionPendiente"));
-
-                case HttpStatusCode.InternalServerError:
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("TranscripcionConErrores"));
-
-                default:
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
-            }
+            if (ex.GetType().IsAssignableFrom(typeof(HttpResponseException)) &&
+               ((HttpResponseException)ex).Response.StatusCode == HttpStatusCode.Unauthorized)
+                return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+            else if (ex.GetType().IsAssignableFrom(typeof(TranscripcionNoEncontradaException)))
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex.Message);
+            else if (ex.GetType().IsAssignableFrom(typeof(TranscripcionPendienteException)))
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            else if (ex.GetType().IsAssignableFrom(typeof(TranscripcionErroneaException)))
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            else
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
         }
 
         // [POST] api/Transcripciones
@@ -106,7 +103,8 @@ namespace WebApi.Controllers
             try
             {
                 string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-                new TranscripcionesBR().GrabarFicheroRecibido(bo, HttpContext.Current.Request, loginUsuario);
+                HttpPostedFile ficheroRecibido = new TranscripcionesBR().ValidarYExtraerFicheroRecibido(HttpContext.Current.Request, loginUsuario);
+                bo.RecibirFicheroATranscribir(ficheroRecibido, loginUsuario);
                 return Request.CreateResponse(HttpStatusCode.Created, "La llamada se ha procesado con éxito");
             }
             catch (HttpResponseException ex)

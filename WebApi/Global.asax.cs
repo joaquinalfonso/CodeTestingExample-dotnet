@@ -1,5 +1,5 @@
 ﻿using System.Web.Http;
-using WebApi.Controllers;
+using WebApi.Cron;
 
 namespace WebApi
 {
@@ -9,7 +9,7 @@ namespace WebApi
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            Cron.Iniciar();
+            Cron.Cron.Iniciar();
         }
     }
 }

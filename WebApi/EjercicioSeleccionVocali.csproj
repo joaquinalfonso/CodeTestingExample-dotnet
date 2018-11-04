@@ -123,19 +123,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Configuracion.cs" />
-    <Compile Include="App_Code\FicherosBR.cs" />
+    <Compile Include="App_Code\TranscripcionNoGuardadaException.cs" />
+    <Compile Include="App_Code\TranscripcionErroneaException.cs" />
+    <Compile Include="App_Code\IUsuarioBO.cs" />
+    <Compile Include="App_Code\TranscripcionPendienteException.cs" />
+    <Compile Include="App_Code\TranscripcionNoEncontradaException.cs" />
     <Compile Include="App_GlobalResources\Mensajes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Mensajes.resx</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\CronTareaDia.cs" />
-    <Compile Include="Controllers\CronTareaMinuto.cs" />
+    <Compile Include="App_Code\Cron\CronTareaDia.cs" />
+    <Compile Include="App_Code\Cron\CronTareaMinuto.cs" />
     <Compile Include="Controllers\ITranscripcionesBO.cs" />
     <Compile Include="App_Code\ParametrosGetTranscripcionesTO.cs" />
     <Compile Include="App_Code\INVOXMedical.cs" />
-    <Compile Include="Controllers\CronTareaHora.cs" />
-    <Compile Include="Controllers\Cron.cs" />
+    <Compile Include="App_Code\Cron\CronTareaHora.cs" />
+    <Compile Include="App_Code\Cron\Cron.cs" />
     <Compile Include="App_Code\CacheTranscripcionesPendientes.cs" />
     <Compile Include="App_Code\TranscripcionDTO.cs" />
     <Compile Include="Controllers\TestController.cs" />

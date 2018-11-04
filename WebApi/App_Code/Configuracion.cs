@@ -14,7 +14,15 @@ namespace WebApi.Comun
 
         public static string ObtenerMensajeTexto(string clave)
         {
-            return (string)HttpContext.GetGlobalResourceObject("Mensajes", clave);
+            //try
+            //{
+            //    return (string)HttpContext.GetGlobalResourceObject("Mensajes", clave);
+            //}
+            //catch
+            //{
+            //    return "Contexto no inicializado";
+            //}
+            return clave;
         }
     }
 }

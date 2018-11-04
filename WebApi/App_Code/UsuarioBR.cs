@@ -1,6 +1,6 @@
-﻿namespace WebApi.App_Code
+﻿namespace WebApi.Negocio
 {
-    public class UsuarioBR
+    public class UsuarioBO : IUsuarioBO
     {
 
         public bool EsUsuarioValido(string loginUsuario)

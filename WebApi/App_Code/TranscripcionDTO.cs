@@ -1,7 +1,7 @@
 ﻿using System;
 using WebApi.Models;
 
-namespace WebApi.App_Code
+namespace WebApi.Comun
 {
     public class TranscripcionDTO
     {

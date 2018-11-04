@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using WebApi.Models;
 
-namespace WebApi.App_Code
+namespace WebApi.Negocio
 {
     public class CacheTranscripcionesPendientes
     {

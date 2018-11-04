@@ -138,6 +138,9 @@
   <data name="TranscripcionNoEncontrada" xml:space="preserve">
     <value>Transcripción no encontrada</value>
   </data>
+  <data name="TranscripcionNoGuardada" xml:space="preserve">
+    <value>La transcripción no se ha podido almacenar</value>
+  </data>
   <data name="TranscripcionPendiente" xml:space="preserve">
     <value>La transcripción aún no se ha realizado</value>
   </data>
