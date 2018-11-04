@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using WebApi.Comun;
@@ -33,7 +34,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                ParametrosGetTranscripcionesTO parametrosConsulta = new TranscripcionesBR().ObtenerYValidarParametrosConsultaGetTranscripciones(Request, desde, hasta);
+                ParametrosGetTranscripcionesTO parametrosConsulta = new TranscripcionesControllerValidaciones().ObtenerYValidarParametrosConsultaGetTranscripciones(Request, desde, hasta);
 
                 List<TranscripcionDTO> listaTranscripciones = bo.ObtenerTranscripciones(parametrosConsulta);
 
@@ -67,7 +68,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
+                string loginUsuario = new TranscripcionesControllerValidaciones().ObtenerUsuarioDeRequestYValidarAcceso(Request);
  
                 string textoTranscrito = bo.ObtenerTextoTranscripcionRealizada(id, loginUsuario);
 
@@ -96,12 +97,42 @@ namespace WebApi.Controllers
         }
 
         // [POST] api/Transcripciones
-        public HttpResponseMessage PostTranscripcion()
+        public async Task<HttpResponseMessage> PostTranscripcion()
         {
+            /*
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new MultipartFormDataStreamProvider(root);
+
             try
             {
-                string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-                HttpPostedFile ficheroRecibido = new TranscripcionesBR().ValidarYExtraerFicheroRecibido(HttpContext.Current.Request, loginUsuario);
+                await Request.Content.ReadAsMultipartAsync(provider);
+
+                // Show all the key-value pairs.
+                foreach (var key in provider.FormData.AllKeys)
+                {
+                    foreach (var val in provider.FormData.GetValues(key))
+                    {
+                        string a = (string.Format("{0}: {1}", key, val));
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (System.Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+            }*/
+
+            
+            try
+            {
+                string loginUsuario = new TranscripcionesControllerValidaciones().ObtenerUsuarioDeRequestYValidarAcceso(Request);
+                HttpPostedFile ficheroRecibido = new TranscripcionesControllerValidaciones().ValidarYExtraerFicheroRecibido(HttpContext.Current.Request, loginUsuario);
                 bo.RecibirFicheroATranscribir(ficheroRecibido, loginUsuario);
                 return Request.CreateResponse(HttpStatusCode.Created, "La llamada se ha procesado con éxito");
             }
@@ -109,6 +140,7 @@ namespace WebApi.Controllers
             {
                 return GestionarErrorPutTranscripcion(ex);
             }
+            
         }
 
         private HttpResponseMessage GestionarErrorPutTranscripcion(HttpResponseException ex)

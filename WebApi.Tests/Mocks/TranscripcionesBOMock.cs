@@ -5,7 +5,7 @@ using WebApi.Comun;
 using WebApi.Models;
 using WebApi.Negocio;
 
-namespace EjercicioSeleccionVocali.Tests.Mocks
+namespace Tests.Mocks
 {
     public class TranscripcionesBOMock : ITranscripcionesBO
     {

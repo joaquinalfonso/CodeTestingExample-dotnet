@@ -7,7 +7,7 @@ using System.Web;
 using System.Net.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebApi.Controllers;
-using EjercicioSeleccionVocali.Tests.Mocks;
+using Tests.Mocks;
 using WebApi.Negocio;
 using System.Web.Http;
 using System.Net;
@@ -37,7 +37,80 @@ namespace WebApi.Controller.Tests
             SimpleWorkerRequest request = new SimpleWorkerRequest("", "", "", null, new StringWriter());
             HttpContext context = new HttpContext(request);
             HttpContext.Current = context;
+
+            
         }
+
+        #region CU1 PostTranscripcion
+
+        [TestMethod]
+        public void PostTranscripcion_SinHeaderLogin()
+        {
+            TranscripcionesController controller = new TranscripcionesController(GetTranscripcionesBOMock());
+
+            ((ApiController)controller).Request = new HttpRequestMessage();
+            ((ApiController)controller).Request.SetConfiguration(new HttpConfiguration());
+
+            HttpResponseMessage respuesta = controller.PostTranscripcion().GetAwaiter().GetResult(); ;
+
+            Assert.AreEqual(respuesta.StatusCode, HttpStatusCode.Unauthorized);
+
+        }
+
+        [TestMethod]
+        public void PostTranscripcion_LoginVacio()
+        {
+            TranscripcionesController controller = new TranscripcionesController(GetTranscripcionesBOMock());
+
+            ((ApiController)controller).Request = new HttpRequestMessage();
+            ((ApiController)controller).Request.SetConfiguration(new HttpConfiguration());
+
+            ((ApiController)controller).Request.Headers.Add("Login", "");
+
+            HttpResponseMessage respuesta = controller.PostTranscripcion().GetAwaiter().GetResult(); ;
+
+            Assert.AreEqual(respuesta.StatusCode, HttpStatusCode.Unauthorized);
+
+        }
+
+        [TestMethod]
+        public void PostTranscripcion_LoginOKSinFichero()
+        {
+            TranscripcionesController controller = new TranscripcionesController(GetTranscripcionesBOMock());
+
+            ((ApiController)controller).Request = new HttpRequestMessage();
+            ((ApiController)controller).Request.SetConfiguration(new HttpConfiguration());
+
+            ((ApiController)controller).Request.Headers.Add("Login", "Usr1");
+
+            HttpResponseMessage respuesta = controller.PostTranscripcion().GetAwaiter().GetResult(); ;
+
+            Assert.AreEqual(respuesta.StatusCode, HttpStatusCode.BadRequest);
+
+        }
+
+        [TestMethod]
+        public void PostTranscripcion_LoginOKSinFicheroMp3()
+        {
+            TranscripcionesController controller = new TranscripcionesController(GetTranscripcionesBOMock());
+
+            ((ApiController)controller).Request = new HttpRequestMessage();
+            ((ApiController)controller).Request.SetConfiguration(new HttpConfiguration());
+
+            ((ApiController)controller).Request.Headers.Add("Login", "Usr1");
+
+            //HttpContext.Current
+
+            //((ApiController)controller).Request.Content.
+
+            HttpResponseMessage respuesta = controller.PostTranscripcion().GetAwaiter().GetResult(); ;
+
+            Assert.AreEqual(respuesta.StatusCode, HttpStatusCode.BadRequest);
+
+        }
+
+        #endregion
+
 
         #region CU2 GetTranscripciones
 
