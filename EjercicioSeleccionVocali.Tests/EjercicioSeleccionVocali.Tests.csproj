@@ -56,7 +56,6 @@
     <Compile Include="Mocks\TranscripcionesBOMock.cs" />
     <Compile Include="TestTranscripcionesController.cs" />
     <Compile Include="TestUsuarioBO.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

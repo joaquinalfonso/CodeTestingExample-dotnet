@@ -42,7 +42,10 @@ namespace EjercicioSeleccionVocali.Tests.Mocks
 
         public List<TranscripcionDTO> ObtenerTranscripciones(ParametrosGetTranscripcionesTO parametros)
         {
-            throw new NotImplementedException();
+            List<TranscripcionDTO> listaTranscripciones = new List<TranscripcionDTO>();
+            testTranscripciones.ForEach(x => listaTranscripciones.Add(new TranscripcionDTO(x)));
+
+            return listaTranscripciones;
         }
 
         public void ProcesarTranscripcion(Transcripcion transcripcion)

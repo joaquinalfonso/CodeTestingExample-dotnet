@@ -51,9 +51,7 @@ namespace WebApi.Controllers
             switch (ex.Response.StatusCode)
             {
                 case HttpStatusCode.Unauthorized:
-                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, 
-                        //"Usuario no valido");
-                        Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
 
                 case HttpStatusCode.BadRequest:
                     string mensajeError = string.Format(Configuracion.ObtenerMensajeTexto("FormatoIncorrectoGetTranscripciones"), Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING);
@@ -115,6 +113,7 @@ namespace WebApi.Controllers
 
         private HttpResponseMessage GestionarErrorPutTranscripcion(HttpResponseException ex)
         {
+            //TODO
             switch (ex.Response.StatusCode)
             {
                 case HttpStatusCode.Unauthorized:

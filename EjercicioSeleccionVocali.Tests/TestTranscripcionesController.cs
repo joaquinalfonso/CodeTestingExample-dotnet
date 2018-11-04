@@ -16,10 +16,8 @@ using System.Threading;
 using System.Web.Hosting;
 using System.IO;
 
-namespace VocaliMp3Api.Tests
+namespace WebApi.Controller.Tests
 {
-
-
 
     [TestClass]
     public class TestTranscripcionesController
@@ -41,21 +39,85 @@ namespace VocaliMp3Api.Tests
         }
 
         [TestMethod]
-        public void GetAllTranscripciones_DebeDevolverNoAutorizado()
+        public void GetAllTranscripciones_SinHeaderLoginDebeDevolverNoAutorizado()
         {
             TranscripcionesController controller = new TranscripcionesController(GetTranscripcionesBOMock());
 
             ((ApiController)controller).Request = new HttpRequestMessage();
             ((ApiController)controller).Request.SetConfiguration(new HttpConfiguration());
 
+            HttpResponseMessage respuesta = controller.GetTranscripciones();
 
+            Assert.AreEqual(respuesta.StatusCode, HttpStatusCode.Unauthorized);
+            
+        }
 
+        [TestMethod]
+        public void GetAllTranscripciones_LoginVacioDebeDevolverNoAutorizado()
+        {
+            TranscripcionesController controller = new TranscripcionesController(GetTranscripcionesBOMock());
+
+            ((ApiController)controller).Request = new HttpRequestMessage();
+            ((ApiController)controller).Request.SetConfiguration(new HttpConfiguration());
+
+            ((ApiController)controller).Request.Headers.Add("Login", "");
 
             HttpResponseMessage respuesta = controller.GetTranscripciones();
 
             Assert.AreEqual(respuesta.StatusCode, HttpStatusCode.Unauthorized);
 
-            
+        }
+
+
+        [TestMethod]
+        public void GetAllTranscripciones_FormatoFechasIncorrecto()
+        {
+            TranscripcionesController controller = new TranscripcionesController(GetTranscripcionesBOMock());
+
+            ((ApiController)controller).Request = new HttpRequestMessage();
+            ((ApiController)controller).Request.SetConfiguration(new HttpConfiguration());
+
+            ((ApiController)controller).Request.Headers.Add("Login", "Pepe");
+
+            HttpResponseMessage respuesta = controller.GetTranscripciones("xxxxxx");
+
+            Assert.AreEqual(respuesta.StatusCode, HttpStatusCode.BadRequest);
+
+        }
+
+        [TestMethod]
+        public void GetAllTranscripciones_OK()
+        {
+            TranscripcionesController controller = new TranscripcionesController(GetTranscripcionesBOMock());
+
+            ((ApiController)controller).Request = new HttpRequestMessage();
+            ((ApiController)controller).Request.SetConfiguration(new HttpConfiguration());
+
+            ((ApiController)controller).Request.Headers.Add("Login", "Pepe");
+
+            HttpResponseMessage respuesta = controller.GetTranscripciones();
+
+            Assert.AreEqual(respuesta.StatusCode, HttpStatusCode.OK);
+            //Assert.AreEqual(respuesta.Content.Value.Count, 3);
+
+        }
+
+
+
+        [TestMethod]
+        public void GetAllTranscripciones_LoginOKDebeDevolverNoAutorizado()
+        {
+            TranscripcionesController controller = new TranscripcionesController(GetTranscripcionesBOMock());
+
+            ((ApiController)controller).Request = new HttpRequestMessage();
+            ((ApiController)controller).Request.SetConfiguration(new HttpConfiguration());
+
+            ((ApiController)controller).Request.Headers.Add("Login", "Juan");
+
+            HttpResponseMessage respuesta = controller.GetTranscripciones();
+
+            Assert.AreEqual(respuesta.StatusCode, HttpStatusCode.Unauthorized);
+
         }
 
         //[TestMethod]
