@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Web;
 using WebApi.Comun;
 
 namespace WebApi.Infraestructura
 {
+
+    // Clase de recursos que implementa la capa de operaciones de almacenamiento en disco.
+    // Implementa la interface IFicherosResource
+
     public class FicherosResource : IFicherosResource
     {
 
@@ -33,7 +34,7 @@ namespace WebApi.Infraestructura
         private string ObtenerRutaFicheroMp3(int id)
         {
             string rutaFicherosMp3 = System.Web.Hosting.HostingEnvironment.MapPath(Configuracion.RUTA_FICHEROS_MP3);
-            return string.Format("{0}{1}.mp3", rutaFicherosMp3, id);
+            return string.Format("{0}{1}{2}", rutaFicherosMp3, id, Configuracion.EXTENSION_FICHEROS_AUDIO.ToLower());
         }
 
         public byte[] ObtenerFicheroMp3(int id)
@@ -58,7 +59,7 @@ namespace WebApi.Infraestructura
         public void GrabarFicheroMp3(HttpPostedFile postedFile, int idTranscripcion)
         {
             string rutaGuardado = HttpContext.Current.Server.MapPath(Configuracion.RUTA_FICHEROS_MP3);
-            var filePath = rutaGuardado + string.Format("{0}.mp3", idTranscripcion);
+            var filePath = rutaGuardado + string.Format("{0}{1}", idTranscripcion, Configuracion.EXTENSION_FICHEROS_AUDIO.ToLower());
 
             postedFile.SaveAs(filePath);
         }

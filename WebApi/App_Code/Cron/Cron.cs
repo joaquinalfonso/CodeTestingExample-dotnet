@@ -7,6 +7,9 @@ using Quartz.Impl;
 
 namespace WebApi.Cron
 {
+
+    // Clase para iniciar y programar el cron de tareas periodicas.
+
     public class Cron
     {
 

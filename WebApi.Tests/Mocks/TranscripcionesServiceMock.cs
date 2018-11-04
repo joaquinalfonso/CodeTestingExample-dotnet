@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using WebApi.Comun;
 using WebApi.Models;
-using WebApi.Negocio;
+using WebApi.Servicios;
 
 namespace Tests.Mocks
 {
@@ -37,7 +37,7 @@ namespace Tests.Mocks
 
         
 
-        public List<TranscripcionDTO> ObtenerTranscripciones(ParametrosGetTranscripcionesTO parametros)
+        public List<TranscripcionDTO> ObtenerTranscripciones(ParametrosConsultaTranscripcionesTO parametros)
         {
             List<TranscripcionDTO> listaTranscripciones = new List<TranscripcionDTO>();
             testTranscripciones.ForEach(x => listaTranscripciones.Add(new TranscripcionDTO(x)));

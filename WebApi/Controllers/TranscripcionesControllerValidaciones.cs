@@ -6,8 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using WebApi.Comun;
-using WebApi.Models;
-using WebApi.Negocio;
+using WebApi.Servicios;
 
 namespace WebApi.Controllers
 {
@@ -58,9 +57,9 @@ namespace WebApi.Controllers
             return loginUsuario;
         }
 
-        public ParametrosGetTranscripcionesTO ObtenerYValidarParametrosConsultaGetTranscripciones(HttpRequestMessage request, string desde, string hasta)
+        public ParametrosConsultaTranscripcionesTO ObtenerYValidarParametrosConsultaGetTranscripciones(HttpRequestMessage request, string desde, string hasta)
         {
-            ParametrosGetTranscripcionesTO parametros = new ParametrosGetTranscripcionesTO();
+            ParametrosConsultaTranscripcionesTO parametros = new ParametrosConsultaTranscripcionesTO();
 
             //comprobar que los nombres de parametros son "desde o hasta"
             var queryString = request.GetQueryNameValuePairs().ToDictionary(x => x.Key, x => x.Value).ToList();

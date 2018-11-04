@@ -1,8 +1,11 @@
 ﻿using System;
 using WebApi.Comun;
 
-namespace WebApi.Negocio
+namespace WebApi.Servicios
 {
+
+    // Excepción para notificar que la transcripción no se ha realizado todavía.
+
     public class TranscripcionPendienteException : Exception
     {
         public TranscripcionPendienteException()

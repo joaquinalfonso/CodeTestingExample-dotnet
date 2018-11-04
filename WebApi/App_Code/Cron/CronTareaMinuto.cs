@@ -1,30 +1,28 @@
 ﻿using Quartz;
 using System.Threading.Tasks;
-using WebApi.Negocio;
+using WebApi.Servicios;
 
 namespace WebApi.Cron
 {
+
+    // Clase para definir la tarea que ejecuta el cron cada minuto.
+
     public class CronTareaMinuto : IJob
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private ITranscripcionesService bo;
+        public ITranscripcionesService transcripcionesService { private get; set; }
 
         public CronTareaMinuto()
         {
-            this.bo = new TranscripcionesService();
-        }
-
-        public CronTareaMinuto(ITranscripcionesService transcripcionesBO)
-        {
-            this.bo = transcripcionesBO;
+            this.transcripcionesService = new TranscripcionesService();
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
             await Task.Run(() =>
             {
-                //logger.Trace("Tarea minuto");
+
             });
         }
     }

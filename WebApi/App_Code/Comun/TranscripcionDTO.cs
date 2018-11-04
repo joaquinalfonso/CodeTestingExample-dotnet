@@ -3,6 +3,9 @@ using WebApi.Models;
 
 namespace WebApi.Comun
 {
+    
+    // Data Transfer Object para enviar un subconjunto de los datos del modelo.
+
     public class TranscripcionDTO
     {
         public int Id { get; set; }

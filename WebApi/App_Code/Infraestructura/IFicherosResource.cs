@@ -2,6 +2,9 @@
 
 namespace WebApi.Infraestructura
 {
+
+    // Interface que define las operaciones de almacenamiento en disco.
+
     public interface IFicherosResource
     {
         bool ExisteFicheroTranscritoTxt(int id);

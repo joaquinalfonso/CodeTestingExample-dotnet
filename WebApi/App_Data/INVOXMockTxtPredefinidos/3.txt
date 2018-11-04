@@ -1,10 +1,1 @@
-Las tres leyes de la robótica son un conjunto de normas elaboradas por el escritor de ciencia ficción Isaac Asimov que se aplican a la mayoría de los robots de sus novelas y cuentos y que están diseñados para cumplir órdenes. En ese universo, las leyes son «formulaciones matemáticas impresas en los senderos positrónicos del cerebro» de los robots (líneas de código del programa que regula el cumplimiento de las leyes guardado en la memoria principal de aquellos). Aparecidas por primera vez en el relato «Círculo vicioso» (Runaround, 1942), establecen lo siguiente:
-
-Un robot no hará daño a un ser humano o, por inacción, permitirá que un ser humano sufra daño.
-Un robot debe cumplir las órdenes dadas por los seres humanos, a excepción de aquellas que entrasen en conflicto con la primera ley.
-Un robot debe proteger su propia existencia en la medida en que esta protección no entre en conflicto con la primera o con la segunda ley.1?
-Esta redacción de las leyes es la forma convencional en la que los humanos de las historias las enuncian; su forma real sería la de una serie de instrucciones equivalentes y mucho más complejas en el cerebro del robot.
-
-Asimov atribuye las tres leyes a John W. Campbell, que las habría redactado durante una conversación sostenida el 23 de diciembre de 1940. Sin embargo, Campbell sostiene que Asimov ya las tenía pensadas, y que simplemente las expresaron entre los dos de una manera más formal.
-
-Las tres leyes aparecen en un gran número de historias de Asimov, tanto en su serie de los robots como en varias historias relacionadas, y la serie de novelas protagonizadas por Lucky Starr. También han sido utilizadas por otros autores cuando han trabajado en el universo de ficción de Asimov, y son frecuentes las referencias a ellas en otras obras, no solo de ciencia ficción, sino también de otros géneros.
+Texto transcrito 3

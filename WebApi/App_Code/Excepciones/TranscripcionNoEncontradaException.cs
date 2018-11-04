@@ -1,8 +1,11 @@
 ﻿using System;
 using WebApi.Comun;
 
-namespace WebApi.Negocio
+namespace WebApi.Servicios
 {
+
+    // Excepción para notificar que la transcripción no existe.
+
     public class TranscripcionNoEncontradaException : Exception
     {
         public TranscripcionNoEncontradaException()

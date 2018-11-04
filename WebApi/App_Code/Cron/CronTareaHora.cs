@@ -1,23 +1,21 @@
 ﻿using Quartz;
 using System.Threading.Tasks;
-using WebApi.Negocio;
+using WebApi.Servicios;
 
 namespace WebApi.Cron
 {
+
+    // Clase para definir la tarea que ejecuta el cron cada hora.
+
     public class CronTareaHora : IJob
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private ITranscripcionesService bo;
+        public ITranscripcionesService transcripcionesService { private get; set; }
 
         public CronTareaHora()
         {
-            this.bo = new TranscripcionesService();
-        }
-
-        public CronTareaHora(ITranscripcionesService transcripcionesBO)
-        {
-            this.bo = transcripcionesBO;
+            this.transcripcionesService = new TranscripcionesService();
         }
 
         public async Task Execute(IJobExecutionContext context)
@@ -25,7 +23,7 @@ namespace WebApi.Cron
             await Task.Run(() =>
             {
                 logger.Trace("Ejecutando tarea hora");
-                bo.ProcesarTranscripcionesPendientes();
+                transcripcionesService.ProcesarTranscripcionesPendientes();
             });
         }
     }

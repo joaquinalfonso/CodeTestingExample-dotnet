@@ -1,7 +1,9 @@
-﻿using System.Web;
-
-namespace WebApi.Comun
+﻿namespace WebApi.Comun
 {
+    // Clase para definir constantes del programa. 
+    // Sería mejor almacenarlo en una tabla, un archivo de recursos o de configuración, etc..
+    // y se podría cambiar sin necesidad de hacer una release nueva 
+
     public static class Configuracion
     {
         public const int NUMERO_HILOS_PROCESAMIENTO_TRANSCRIPCIONES = 3;
@@ -9,19 +11,12 @@ namespace WebApi.Comun
         public const string RUTA_FICHEROS_MP3 = "~/App_Data/UploadMp3/";
         public const int TAMANYO_MAX_BYTES_MP3 = 5242880;   // 5 MB
         public const string EXTENSION_FICHEROS_AUDIO = ".MP3";
-        public const int NUMERO_CARACTERES_TRANSCRIPCIONES_ID = 10;
         public const string FORMATO_FECHA_VARIABLE_QUERYSTRING = "yyyy-MM-ddTHH:mm";
 
         public static string ObtenerMensajeTexto(string clave)
         {
-            //try
-            //{
-            //    return (string)HttpContext.GetGlobalResourceObject("Mensajes", clave);
-            //}
-            //catch
-            //{
-            //    return "Contexto no inicializado";
-            //}
+            //Se puede  Obtener de un archivo de recursos o un servicio
+
             return clave;
         }
     }

@@ -1,8 +1,11 @@
 ﻿using System;
 using WebApi.Comun;
 
-namespace WebApi.Negocio
+namespace WebApi.Servicios
 {
+
+    // Excepción para notificar que ha ocurrido un error al guardar la transcripción.
+
     public class TranscripcionNoGuardadaException : Exception
     {
         public TranscripcionNoGuardadaException()
