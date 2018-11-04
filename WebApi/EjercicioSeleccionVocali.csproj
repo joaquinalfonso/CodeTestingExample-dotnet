@@ -125,7 +125,9 @@
     <Compile Include="App_Code\Comun\Configuracion.cs" />
     <Compile Include="App_Code\Excepciones\TranscripcionNoGuardadaException.cs" />
     <Compile Include="App_Code\Excepciones\TranscripcionErroneaException.cs" />
-    <Compile Include="App_Code\Negocio\IUsuarioBO.cs" />
+    <Compile Include="App_Code\Infraestructura\FicherosResource.cs" />
+    <Compile Include="App_Code\Infraestructura\IFicherosResource.cs" />
+    <Compile Include="App_Code\Negocio\IUsuarioService.cs" />
     <Compile Include="App_Code\Excepciones\TranscripcionPendienteException.cs" />
     <Compile Include="App_Code\Excepciones\TranscripcionNoEncontradaException.cs" />
     <Compile Include="App_GlobalResources\Mensajes.Designer.cs">
@@ -135,19 +137,19 @@
     </Compile>
     <Compile Include="App_Code\Cron\CronTareaDia.cs" />
     <Compile Include="App_Code\Cron\CronTareaMinuto.cs" />
-    <Compile Include="App_Code\Negocio\ITranscripcionesBO.cs" />
+    <Compile Include="App_Code\Negocio\ITranscripcionesService.cs" />
     <Compile Include="App_Code\Comun\ParametrosGetTranscripcionesTO.cs" />
     <Compile Include="App_Code\INVOXMedical.cs" />
     <Compile Include="App_Code\Cron\CronTareaHora.cs" />
     <Compile Include="App_Code\Cron\Cron.cs" />
-    <Compile Include="Controllers\CacheTranscripcionesPendientes.cs" />
+    <Compile Include="App_Code\Negocio\CacheTranscripcionesPendientes.cs" />
     <Compile Include="App_Code\Comun\TranscripcionDTO.cs" />
-    <Compile Include="App_Code\Negocio\TranscripcionesBO.cs" />
+    <Compile Include="App_Code\Negocio\TranscripcionesService.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\TranscripcionesControllerValidaciones.cs" />
     <Compile Include="App_Code\Comun\TipoEstadoTranscripcion.cs" />
     <Compile Include="Controllers\TranscripcionesController.cs" />
-    <Compile Include="App_Code\Negocio\UsuarioBO.cs" />
+    <Compile Include="App_Code\Negocio\UsuarioService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

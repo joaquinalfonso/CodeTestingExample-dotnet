@@ -14,14 +14,14 @@ namespace WebApi.Controllers
     public class TranscripcionesController : ApiController
     {
 
-        private ITranscripcionesBO bo;
+        private ITranscripcionesService bo;
 
         public TranscripcionesController()
         {
-            this.bo = new TranscripcionesBO();
+            this.bo = new TranscripcionesService();
         }
 
-        public TranscripcionesController(ITranscripcionesBO transcripcionesBO)
+        public TranscripcionesController(ITranscripcionesService transcripcionesBO)
         {
             this.bo = transcripcionesBO;
         }
@@ -126,8 +126,8 @@ namespace WebApi.Controllers
             catch (System.Exception e)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-            }*/
-
+            }
+            */
             
             try
             {

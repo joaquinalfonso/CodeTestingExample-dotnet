@@ -44,7 +44,7 @@ namespace WebApi.Controllers
             try
             {
                 loginUsuario = ObtenerUsuarioDeRequest(request);
-                esUsuarioValido = new UsuarioBO().EsUsuarioValido(loginUsuario);
+                esUsuarioValido = new UsuarioService().EsUsuarioValido(loginUsuario);
             }
             catch
             {

@@ -23,9 +23,9 @@ namespace WebApi.Controller.Tests
     [TestClass]
     public class TestTranscripcionesController
     {
-        private ITranscripcionesBO GetTranscripcionesBOMock()
+        private ITranscripcionesService GetTranscripcionesBOMock()
         {
-            return new TranscripcionesBOMock();
+            return new TranscripcionesServiceMock();
         }
         [TestInitialize]
         public void InicializaContexto()
@@ -99,7 +99,8 @@ namespace WebApi.Controller.Tests
 
             ((ApiController)controller).Request.Headers.Add("Login", "Usr1");
 
-            //HttpContext.Current
+            //((ApiController)controller).Request.SetRequestContext
+                //HttpContext.Current
 
             //((ApiController)controller).Request.Content.
 

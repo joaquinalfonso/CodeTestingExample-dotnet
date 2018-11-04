@@ -8,14 +8,14 @@ namespace WebApi.Cron
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private ITranscripcionesBO bo;
+        private ITranscripcionesService bo;
 
         public CronTareaHora()
         {
-            this.bo = new TranscripcionesBO();
+            this.bo = new TranscripcionesService();
         }
 
-        public CronTareaHora(ITranscripcionesBO transcripcionesBO)
+        public CronTareaHora(ITranscripcionesService transcripcionesBO)
         {
             this.bo = transcripcionesBO;
         }
