@@ -8,6 +8,10 @@ using WebApi.Infraestructura;
 
 namespace Tests.Mocks
 {
+
+    // Mock para testing que implementa la capa de operaciones de almacenamiento en disco.
+    // Implementa la interface IFicherosResource
+
     public class FicherosResourceMock : IFicherosResource
     {
         public bool ExisteFicheroTranscritoTxt(int id)

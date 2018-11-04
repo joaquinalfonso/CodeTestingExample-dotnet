@@ -11,6 +11,8 @@ using WebApi.Servicios;
 namespace WebApi.Controllers
 {
 
+    // Clase que implementa las validaciones de entrada de datos del servicio REST.
+
     public class TranscripcionesControllerValidaciones
     {
 
@@ -93,10 +95,6 @@ namespace WebApi.Controllers
             }
         }
 
-        
-
-       
-
         private void ValidarTipoFichero(HttpPostedFile fichero)
         {
             if (!Path.GetExtension(fichero.FileName).ToUpper().Equals(Configuracion.EXTENSION_FICHEROS_AUDIO))
@@ -108,29 +106,7 @@ namespace WebApi.Controllers
             if (fichero.ContentLength > Configuracion.TAMANYO_MAX_BYTES_MP3)
                 throw new HttpResponseException(HttpStatusCode.RequestEntityTooLarge);
         }
-
-        //public string ObtenerNuevoIdTranscripcion()
-        //{
-        //    int tokenSize = Configuracion.NUMERO_CARACTERES_TRANSCRIPCIONES_ID;
-
-        //    string token = ObtenerCadenaAlfanumericaAleatoria(tokenSize);
-
-        //    return token;
-        //}
-
-        //private string ObtenerCadenaAlfanumericaAleatoria(int longitud)
-        //{
-        //    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-        //    Random random = new Random();
-
-        //    return new string(Enumerable.Repeat(chars, longitud)
-        //      .Select(s => s[random.Next(s.Length)]).ToArray());
-        //}
-
-        
-
-        
+       
         public HttpPostedFile ValidarYExtraerFicheroRecibido(HttpRequest request, string loginUsuario)
         {
 
@@ -153,7 +129,6 @@ namespace WebApi.Controllers
 
             
         }
-
        
     }
 

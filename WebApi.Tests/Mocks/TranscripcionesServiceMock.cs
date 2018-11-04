@@ -7,13 +7,17 @@ using WebApi.Servicios;
 
 namespace Tests.Mocks
 {
+
+    // Mock para testing que implementa la logica de negocio de las operaciones de transcripciones.
+    // Implementa la interface ITranscripcionesService.
+
     public class TranscripcionesServiceMock : ITranscripcionesService
     {
         private List<Transcripcion> testTranscripciones = new List<Transcripcion>();
 
         public TranscripcionesServiceMock()
         {
-            
+
             testTranscripciones.Add(new Transcripcion { Id = 1, FechaHoraRecepcion = DateTime.Now, LoginUsuario = "Usuario1", NombreArchivo = "Archivo1.mp3", Estado = TipoEstadoTranscripcion.PENDIENTE.ToString() });
             testTranscripciones.Add(new Transcripcion { Id = 2, FechaHoraRecepcion = DateTime.Now.AddDays(-1), LoginUsuario = "Usuario1", NombreArchivo = "Archivo2.mp3", Estado = TipoEstadoTranscripcion.PENDIENTE.ToString() });
             testTranscripciones.Add(new Transcripcion { Id = 3, FechaHoraRecepcion = DateTime.Now.AddDays(-2), LoginUsuario = "Usuario2", NombreArchivo = "Archivo3.mp3", Estado = TipoEstadoTranscripcion.PENDIENTE.ToString() });
@@ -34,8 +38,6 @@ namespace Tests.Mocks
         {
             throw new NotImplementedException();
         }
-
-        
 
         public List<TranscripcionDTO> ObtenerTranscripciones(ParametrosConsultaTranscripcionesTO parametros)
         {
@@ -59,8 +61,6 @@ namespace Tests.Mocks
         {
             throw new NotImplementedException();
         }
-
-       
 
         public void RecibirFicheroATranscribir(HttpPostedFile fichero, string login)
         {

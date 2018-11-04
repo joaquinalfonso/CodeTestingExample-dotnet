@@ -11,14 +11,17 @@ using WebApi.Models;
 
 namespace WebApi.Servicios
 {
+
+    // Clase de servicios que implementa la logica de negocio de las operaciones de transcripciones.
+    // Implementa la interface ITranscripcionesService.
+
     public class TranscripcionesService : ITranscripcionesService
     {
         public VocaliEntities db { get; set; }
-        //public VocaliEntities dbPruebas { private get; set; }
+
         public IFicherosResource ficherosResource { private get; set; }
 
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-
 
         public TranscripcionesService()
         {
@@ -92,11 +95,6 @@ namespace WebApi.Servicios
 
         }
 
-
-
-
-
-
         public List<TranscripcionDTO> ObtenerTranscripciones(ParametrosConsultaTranscripcionesTO parametros)
         {
 
@@ -115,7 +113,6 @@ namespace WebApi.Servicios
 
         private VocaliEntities ObtenerContextoDB()
         {
-            //return (dbPruebas == null) ? new VocaliEntities() : dbPruebas;
             return new VocaliEntities();
         }
 
@@ -267,8 +264,6 @@ namespace WebApi.Servicios
                 throw new TranscripcionNoGuardadaException("RecibirFicheroATranscribir", ex);
             }
         }
-
-
 
         public string ObtenerTextoTranscripcionRealizada(int id, string login)
         {

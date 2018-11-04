@@ -10,6 +10,10 @@ using WebApi.Servicios;
 
 namespace WebApi.Controllers
 {
+
+    // Clase que implementa el controlador del servicio REST.
+    // Define los casos de uso
+
     public class TranscripcionesController : ApiController
     {
         public ITranscripcionesService transcripcionesService { private get; set; }

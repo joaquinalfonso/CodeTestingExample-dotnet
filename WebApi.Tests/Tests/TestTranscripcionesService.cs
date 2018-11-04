@@ -36,7 +36,6 @@ namespace WebApi.Servicios.Tests
             return mockContext;
         }
         
-
         [TestMethod]
         public void ObtenerNuevoIdTranscripcion_OK()
         {
@@ -50,7 +49,5 @@ namespace WebApi.Servicios.Tests
             Assert.AreEqual(id, 4);
         }
 
-        
-        
     }
 }
