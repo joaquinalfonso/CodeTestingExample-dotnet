@@ -7,7 +7,7 @@ namespace WebApi.Negocio
 {
     public interface ITranscripcionesBO
     {
-        Transcripcion ObtenerTranscripcionRealizada(int id, string login);
+
         List<TranscripcionDTO> ObtenerTranscripciones(ParametrosGetTranscripcionesTO parametros);
         int ObtenerNuevoIdTranscripcion();
         void InsertarTranscripcion(Transcripcion transcripcion);
@@ -15,9 +15,8 @@ namespace WebApi.Negocio
         void ProcesarTranscripcion(Transcripcion transcripcion);
         void ProcesarTranscripcionesPendientes();
         void ProcesarTranscripciones(List<Transcripcion> transcripciones);
-        string ObtenerFicheroTranscritoTxt(Transcripcion transcripcion);
-
+        string ObtenerTextoTranscripcionRealizada(int id, string login);
         void RecibirFicheroATranscribir(HttpPostedFile fichero, string login);
 
-        }
+    }
 }

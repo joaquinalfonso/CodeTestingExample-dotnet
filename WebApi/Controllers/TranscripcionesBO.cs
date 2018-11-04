@@ -18,7 +18,7 @@ namespace WebApi.Negocio
         private VocaliEntities db = new VocaliEntities();
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public Transcripcion ObtenerTranscripcionRealizada(int id, string login)
+        private Transcripcion ObtenerTranscripcionRealizada(int id, string login)
         {
             Transcripcion transcripcion = db.Transcripciones.FirstOrDefault((p) => p.Id == id && p.LoginUsuario == login);
 
@@ -47,7 +47,7 @@ namespace WebApi.Negocio
             return transcripcion;
         }
 
-        public string ObtenerFicheroTranscritoTxt(Transcripcion transcripcion)
+        private string ObtenerFicheroTranscritoTxt(Transcripcion transcripcion)
         {
 
             string texto = "";
@@ -301,6 +301,13 @@ namespace WebApi.Negocio
             var filePath = rutaGuardado + string.Format("{0}.mp3", idTranscripcion);
 
             postedFile.SaveAs(filePath);
+        }
+
+        public string ObtenerTextoTranscripcionRealizada(int id, string login)
+        {
+            Transcripcion transcripcion = ObtenerTranscripcionRealizada(id, login);
+            string textoTranscrito = ObtenerFicheroTranscritoTxt(transcripcion);
+            return textoTranscrito;
         }
     }
 }

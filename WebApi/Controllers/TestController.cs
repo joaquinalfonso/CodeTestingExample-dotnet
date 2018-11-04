@@ -67,8 +67,8 @@ namespace WebApi.Controllers
             try
             {
                 string loginUsuario = new TranscripcionesBR().ObtenerUsuarioDeRequestYValidarAcceso(Request);
-                Transcripcion transcripcion = bo.ObtenerTranscripcionRealizada(id, loginUsuario);
-                string textoTranscrito = bo.ObtenerFicheroTranscritoTxt(transcripcion);
+                
+                string textoTranscrito = bo.ObtenerTextoTranscripcionRealizada(id, loginUsuario);
 
                 return Request.CreateResponse(HttpStatusCode.OK, textoTranscrito);
             }

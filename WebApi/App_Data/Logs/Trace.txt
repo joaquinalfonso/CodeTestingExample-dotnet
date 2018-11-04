@@ -83,3 +83,8 @@
 2018-11-03 23:28:23.1283| Trace | WebApi.Controllers.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
 2018-11-03 23:59:31.6352| Trace | WebApi.Cron.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
 2018-11-04 01:09:17.3807| Trace | WebApi.Cron.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-04 10:49:01.5437| Trace | WebApi.Cron.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-04 10:51:56.5396| Trace | WebApi.Cron.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-04 10:53:07.3903| Trace | WebApi.Cron.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
+2018-11-04 10:53:24.5982| Trace | WebApi.Negocio.TranscripcionesBO+<>c__DisplayClass12_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 14
+2018-11-04 10:53:45.3084| Trace | WebApi.Cron.CronTareaHora.<Execute>b__4_0 | Ejecutando tarea hora
