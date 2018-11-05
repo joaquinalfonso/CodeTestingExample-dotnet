@@ -1,0 +1,46 @@
+2018-11-05 01:01:38.6413| Debug | Quartz.Simpl.TaskSchedulingThreadPool.Initialize | TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2018-11-05 01:01:38.6413| Debug | Quartz.Simpl.TaskSchedulingThreadPool.Initialize | TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2018-11-05 01:01:38.8417| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:01:38.8417| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:01:38.8636| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 1 triggers
+2018-11-05 01:01:38.8636| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 1 triggers
+2018-11-05 01:01:38.8796| Debug | Quartz.Simpl.SimpleJobFactory.NewJob | Producing instance of Job 'DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb', class=WebApi.Cron.CronTareaMinuto
+2018-11-05 01:01:38.8796| Debug | Quartz.Simpl.SimpleJobFactory.NewJob | Producing instance of Job 'DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb', class=WebApi.Cron.CronTareaMinuto
+2018-11-05 01:01:38.9245| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 1 triggers
+2018-11-05 01:01:38.9245| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 1 triggers
+2018-11-05 01:01:38.9374| Debug | Quartz.Simpl.SimpleJobFactory.NewJob | Producing instance of Job 'DEFAULT.1e82ad46-131d-445e-812d-92ed03055ff4', class=WebApi.Cron.CronTareaHora
+2018-11-05 01:01:38.9374| Debug | Quartz.Simpl.SimpleJobFactory.NewJob | Producing instance of Job 'DEFAULT.1e82ad46-131d-445e-812d-92ed03055ff4', class=WebApi.Cron.CronTareaHora
+2018-11-05 01:01:38.9444| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:01:38.9444| Debug | Quartz.Core.JobRunShell.Run | Calling Execute on job DEFAULT.1e82ad46-131d-445e-812d-92ed03055ff4
+2018-11-05 01:01:38.9444| Debug | Quartz.Core.JobRunShell.Run | Calling Execute on job DEFAULT.1e82ad46-131d-445e-812d-92ed03055ff4
+2018-11-05 01:01:38.9444| Debug | Quartz.Core.JobRunShell.Run | Calling Execute on job DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb
+2018-11-05 01:01:38.9444| Debug | Quartz.Core.JobRunShell.Run | Calling Execute on job DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb
+2018-11-05 01:01:39.0074| Debug | Quartz.Core.JobRunShell+<Run>d__9.MoveNext | Trigger instruction : NoInstruction
+2018-11-05 01:01:39.0074| Debug | Quartz.Core.JobRunShell+<Run>d__9.MoveNext | Trigger instruction : NoInstruction
+2018-11-05 01:01:38.9444| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:01:41.5730| Debug | Quartz.Core.JobRunShell+<Run>d__9.MoveNext | Trigger instruction : NoInstruction
+2018-11-05 01:01:41.5730| Debug | Quartz.Core.JobRunShell+<Run>d__9.MoveNext | Trigger instruction : NoInstruction
+2018-11-05 01:02:08.3804| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:02:08.3804| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:02:33.1635| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 1 triggers
+2018-11-05 01:02:33.1635| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 1 triggers
+2018-11-05 01:02:38.8271| Debug | Quartz.Simpl.SimpleJobFactory.NewJob | Producing instance of Job 'DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb', class=WebApi.Cron.CronTareaMinuto
+2018-11-05 01:02:38.8271| Debug | Quartz.Simpl.SimpleJobFactory.NewJob | Producing instance of Job 'DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb', class=WebApi.Cron.CronTareaMinuto
+2018-11-05 01:02:38.8431| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:02:38.8431| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:02:38.8431| Debug | Quartz.Core.JobRunShell.Run | Calling Execute on job DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb
+2018-11-05 01:02:38.8431| Debug | Quartz.Core.JobRunShell.Run | Calling Execute on job DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb
+2018-11-05 01:02:38.8650| Debug | Quartz.Core.JobRunShell+<Run>d__9.MoveNext | Trigger instruction : NoInstruction
+2018-11-05 01:02:38.8650| Debug | Quartz.Core.JobRunShell+<Run>d__9.MoveNext | Trigger instruction : NoInstruction
+2018-11-05 01:03:08.3990| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:03:08.3990| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:03:32.0146| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 1 triggers
+2018-11-05 01:03:32.0146| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 1 triggers
+2018-11-05 01:03:38.8274| Debug | Quartz.Simpl.SimpleJobFactory.NewJob | Producing instance of Job 'DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb', class=WebApi.Cron.CronTareaMinuto
+2018-11-05 01:03:38.8274| Debug | Quartz.Simpl.SimpleJobFactory.NewJob | Producing instance of Job 'DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb', class=WebApi.Cron.CronTareaMinuto
+2018-11-05 01:03:38.8414| Debug | Quartz.Core.JobRunShell.Run | Calling Execute on job DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb
+2018-11-05 01:03:38.8414| Debug | Quartz.Core.JobRunShell.Run | Calling Execute on job DEFAULT.6afb135b-61bd-4015-95f2-0511d398a1bb
+2018-11-05 01:03:38.8503| Debug | Quartz.Core.JobRunShell+<Run>d__9.MoveNext | Trigger instruction : NoInstruction
+2018-11-05 01:03:38.8503| Debug | Quartz.Core.JobRunShell+<Run>d__9.MoveNext | Trigger instruction : NoInstruction
+2018-11-05 01:03:38.8414| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers
+2018-11-05 01:03:38.8414| Debug | Quartz.Core.QuartzSchedulerThread.Run | Batch acquisition of 0 triggers

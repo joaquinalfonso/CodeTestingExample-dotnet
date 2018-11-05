@@ -1,0 +1,2 @@
+2018-11-05 01:01:41.8136| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | No se pudo encontrar el archivo 'E:\Vocali\Github\EjercicioSeleccionDesarrollo\WebApi\App_Data\UploadMp3\21.mp3'.
+2018-11-05 01:01:41.8136| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | No se pudo encontrar el archivo 'E:\Vocali\Github\EjercicioSeleccionDesarrollo\WebApi\App_Data\UploadMp3\21.mp3'.
