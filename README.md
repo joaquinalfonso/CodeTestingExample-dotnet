@@ -4,7 +4,7 @@
 
 Tipo request: [POST] 
 
-Ruta: api/Transcripciones
+Ruta: **api/Transcripciones**
 
 Parámetros: 
 
@@ -16,7 +16,7 @@ Parámetros:
 
 Tipo request: [GET]
 
-Ruta: api/Transcripciones?desde={yyyy-MM-ddTHH:mm}&hasta={yyyy-MM-ddTHH:mm}
+Ruta: **api/Transcripciones?desde={yyyy-MM-ddTHH:mm}&hasta={yyyy-MM-ddTHH:mm}**
 
 Parámetros:
 
@@ -42,7 +42,7 @@ Ejemplos:
 
 Tipo request: [GET]
 
-Ruta: api/Transcripciones/{id}
+Ruta: **api/Transcripciones/{id}**
 
 Parámetros:
 
@@ -56,4 +56,4 @@ Ejemplos:
   [GET] api/Transcripciones/1
   
   [GET] api/Transcripciones/33
-~
+~~~
