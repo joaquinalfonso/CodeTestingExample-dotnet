@@ -1,2 +1,18 @@
 2018-11-05 01:01:41.8136| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | No se pudo encontrar el archivo 'E:\Vocali\Github\EjercicioSeleccionDesarrollo\WebApi\App_Data\UploadMp3\21.mp3'.
 2018-11-05 01:01:41.8136| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | No se pudo encontrar el archivo 'E:\Vocali\Github\EjercicioSeleccionDesarrollo\WebApi\App_Data\UploadMp3\21.mp3'.
+2018-11-05 11:47:53.2330| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.2330| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.2489| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.2489| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.3547| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.3547| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.4394| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.4753| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.4753| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.4394| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.5262| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.5262| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.6011| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.6011| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.6160| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción
+2018-11-05 11:47:53.6160| Error | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcion | Error al hacer la transcripción

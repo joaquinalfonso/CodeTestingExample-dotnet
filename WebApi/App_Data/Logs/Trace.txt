@@ -1,2 +1,26 @@
 2018-11-05 01:01:38.9944| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
 2018-11-05 01:01:41.5730| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 21
+2018-11-05 10:34:33.4074| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-05 11:38:40.6918| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-05 11:43:25.9124| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-05 11:43:27.1207| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 3
+2018-11-05 11:43:27.1207| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 45 Transcripcion 1
+2018-11-05 11:43:27.1207| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 2
+2018-11-05 11:43:27.2469| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 5
+2018-11-05 11:43:27.2469| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 4
+2018-11-05 11:43:27.2469| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 45 Transcripcion 6
+2018-11-05 11:43:27.2669| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 7
+2018-11-05 11:46:53.0976| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-05 11:47:51.7807| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-05 11:47:53.1373| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 8
+2018-11-05 11:47:53.1373| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 48 Transcripcion 10
+2018-11-05 11:47:53.1373| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 9
+2018-11-05 11:47:53.3058| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 48 Transcripcion 12
+2018-11-05 11:47:53.3058| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 11
+2018-11-05 11:47:53.3058| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 13
+2018-11-05 11:47:53.3716| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 14
+2018-11-05 11:47:53.3886| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 15
+2018-11-05 11:47:53.4025| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 17
+2018-11-05 11:47:53.3886| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 48 Transcripcion 16
+2018-11-05 11:47:53.5532| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 18
+2018-11-05 11:47:53.5661| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 19
