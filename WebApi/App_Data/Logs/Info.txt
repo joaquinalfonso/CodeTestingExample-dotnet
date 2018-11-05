@@ -30,6 +30,7 @@
 2018-11-05 01:01:38.8417| Info | Quartz.Core.QuartzScheduler.Start | Scheduler QuartzScheduler_$_NON_CLUSTERED started.
 2018-11-05 01:01:41.5491| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 1 transcripciones pendientes de procesar
 2018-11-05 01:01:41.5491| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 1 transcripciones pendientes de procesar
+<<<<<<< HEAD
 2018-11-05 10:34:32.6880| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
 2018-11-05 10:34:32.6880| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
 2018-11-05 10:34:32.8924| Info | Quartz.Core.SchedulerSignalerImpl..ctor | Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
@@ -39,6 +40,17 @@
 2018-11-05 10:34:32.9403| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
 2018-11-05 10:34:32.9403| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
 2018-11-05 10:34:32.9712| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+=======
+2018-11-05 17:57:02.4620| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+2018-11-05 17:57:02.4620| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+2018-11-05 17:57:02.8980| Info | Quartz.Core.SchedulerSignalerImpl..ctor | Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2018-11-05 17:57:02.8980| Info | Quartz.Core.SchedulerSignalerImpl..ctor | Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2018-11-05 17:57:02.9720| Info | Quartz.Core.QuartzScheduler..ctor | Quartz Scheduler v.3.0.7.0 created.
+2018-11-05 17:57:02.9720| Info | Quartz.Core.QuartzScheduler..ctor | Quartz Scheduler v.3.0.7.0 created.
+2018-11-05 17:57:03.0530| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
+2018-11-05 17:57:03.0530| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
+2018-11-05 17:57:03.1040| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+>>>>>>> ab74765600f4f05da4abf3b44abaf3938f5a9fc6
   Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -46,7 +58,11 @@
   Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
   Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
+<<<<<<< HEAD
 2018-11-05 10:34:32.9712| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+=======
+2018-11-05 17:57:03.1040| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+>>>>>>> ab74765600f4f05da4abf3b44abaf3938f5a9fc6
   Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -54,6 +70,7 @@
   Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
   Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
+<<<<<<< HEAD
 2018-11-05 10:34:32.9921| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
 2018-11-05 10:34:32.9921| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
 2018-11-05 10:34:33.0131| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler version: 3.0.7.0
@@ -71,6 +88,23 @@
 2018-11-05 11:38:40.1882| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
 2018-11-05 11:38:40.1882| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
 2018-11-05 11:38:40.2111| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+=======
+2018-11-05 17:57:03.3890| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
+2018-11-05 17:57:03.3890| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
+2018-11-05 17:57:03.5310| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler version: 3.0.7.0
+2018-11-05 17:57:03.5310| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler version: 3.0.7.0
+2018-11-05 17:57:03.6320| Info | Quartz.Core.QuartzScheduler.Start | Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2018-11-05 17:57:03.6320| Info | Quartz.Core.QuartzScheduler.Start | Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2018-11-05 18:26:58.5469| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+2018-11-05 18:26:58.5469| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+2018-11-05 18:26:59.0678| Info | Quartz.Core.SchedulerSignalerImpl..ctor | Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2018-11-05 18:26:59.0678| Info | Quartz.Core.SchedulerSignalerImpl..ctor | Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2018-11-05 18:26:59.3368| Info | Quartz.Core.QuartzScheduler..ctor | Quartz Scheduler v.3.0.7.0 created.
+2018-11-05 18:26:59.3368| Info | Quartz.Core.QuartzScheduler..ctor | Quartz Scheduler v.3.0.7.0 created.
+2018-11-05 18:26:59.6178| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
+2018-11-05 18:26:59.6178| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
+2018-11-05 18:27:00.1518| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+>>>>>>> ab74765600f4f05da4abf3b44abaf3938f5a9fc6
   Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -78,7 +112,11 @@
   Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
   Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
+<<<<<<< HEAD
 2018-11-05 11:38:40.2111| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+=======
+2018-11-05 18:27:00.1518| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+>>>>>>> ab74765600f4f05da4abf3b44abaf3938f5a9fc6
   Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -86,6 +124,7 @@
   Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
   Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
+<<<<<<< HEAD
 2018-11-05 11:38:40.2321| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
 2018-11-05 11:38:40.2321| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
 2018-11-05 11:38:40.2590| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler version: 3.0.7.0
@@ -103,6 +142,27 @@
 2018-11-05 11:43:25.5155| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
 2018-11-05 11:43:25.5155| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
 2018-11-05 11:43:25.5354| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+=======
+2018-11-05 18:27:00.6978| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
+2018-11-05 18:27:00.6978| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
+2018-11-05 18:27:00.7878| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler version: 3.0.7.0
+2018-11-05 18:27:00.7878| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler version: 3.0.7.0
+2018-11-05 18:27:00.9078| Info | Quartz.Core.QuartzScheduler.Start | Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2018-11-05 18:27:00.9078| Info | Quartz.Core.QuartzScheduler.Start | Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2018-11-05 18:47:52.5654| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 0 transcripciones pendientes de procesar
+2018-11-05 18:47:52.5654| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 0 transcripciones pendientes de procesar
+2018-11-05 19:27:05.4456| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 0 transcripciones pendientes de procesar
+2018-11-05 19:27:05.4456| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 0 transcripciones pendientes de procesar
+2018-11-05 22:01:35.7666| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+2018-11-05 22:01:35.7666| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+2018-11-05 22:01:36.0656| Info | Quartz.Core.SchedulerSignalerImpl..ctor | Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2018-11-05 22:01:36.0656| Info | Quartz.Core.SchedulerSignalerImpl..ctor | Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2018-11-05 22:01:36.1336| Info | Quartz.Core.QuartzScheduler..ctor | Quartz Scheduler v.3.0.7.0 created.
+2018-11-05 22:01:36.1336| Info | Quartz.Core.QuartzScheduler..ctor | Quartz Scheduler v.3.0.7.0 created.
+2018-11-05 22:01:36.1696| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
+2018-11-05 22:01:36.1696| Info | Quartz.Simpl.RAMJobStore.Initialize | RAMJobStore initialized.
+2018-11-05 22:01:36.2116| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+>>>>>>> ab74765600f4f05da4abf3b44abaf3938f5a9fc6
   Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -110,7 +170,11 @@
   Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
   Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
+<<<<<<< HEAD
 2018-11-05 11:43:25.5354| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+=======
+2018-11-05 22:01:36.2116| Info | Quartz.Core.QuartzScheduler.Initialize | Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+>>>>>>> ab74765600f4f05da4abf3b44abaf3938f5a9fc6
   Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -118,6 +182,7 @@
   Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
   Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
+<<<<<<< HEAD
 2018-11-05 11:43:25.5484| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
 2018-11-05 11:43:25.5484| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
 2018-11-05 11:43:25.5614| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler version: 3.0.7.0
@@ -190,3 +255,13 @@
 2018-11-05 11:47:51.3309| Info | Quartz.Core.QuartzScheduler.Start | Scheduler QuartzScheduler_$_NON_CLUSTERED started.
 2018-11-05 11:47:53.1053| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 12 transcripciones pendientes de procesar
 2018-11-05 11:47:53.1053| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 12 transcripciones pendientes de procesar
+=======
+2018-11-05 22:01:36.2546| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
+2018-11-05 22:01:36.2546| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler 'QuartzScheduler' initialized
+2018-11-05 22:01:36.3466| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler version: 3.0.7.0
+2018-11-05 22:01:36.3466| Info | Quartz.Impl.StdSchedulerFactory.Instantiate | Quartz scheduler version: 3.0.7.0
+2018-11-05 22:01:36.4516| Info | Quartz.Core.QuartzScheduler.Start | Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2018-11-05 22:01:36.4516| Info | Quartz.Core.QuartzScheduler.Start | Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+2018-11-05 22:01:58.0774| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 0 transcripciones pendientes de procesar
+2018-11-05 22:01:58.0774| Info | WebApi.Servicios.TranscripcionesService.ProcesarTranscripcionesPendientes | 0 transcripciones pendientes de procesar
+>>>>>>> ab74765600f4f05da4abf3b44abaf3938f5a9fc6

@@ -1,5 +1,6 @@
 2018-11-05 01:01:38.9944| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
 2018-11-05 01:01:41.5730| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 21
+<<<<<<< HEAD
 2018-11-05 10:34:33.4074| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
 2018-11-05 11:38:40.6918| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
 2018-11-05 11:43:25.9124| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
@@ -24,3 +25,9 @@
 2018-11-05 11:47:53.3886| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 48 Transcripcion 16
 2018-11-05 11:47:53.5532| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 18
 2018-11-05 11:47:53.5661| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass15_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 19
+=======
+2018-11-05 17:57:04.8670| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-05 18:27:03.8538| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-05 19:27:01.7136| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-05 22:01:37.6966| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+>>>>>>> ab74765600f4f05da4abf3b44abaf3938f5a9fc6
