@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Web;
 using System.Web.Hosting;
-using System.Web.Http;
+
 using Tests.Mocks;
 using WebApi.Controllers;
 using WebApi.Servicios;
