@@ -31,3 +31,10 @@
 2018-11-05 19:27:01.7136| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
 2018-11-05 22:01:37.6966| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
 >>>>>>> ab74765600f4f05da4abf3b44abaf3938f5a9fc6
+2018-11-06 12:49:05.1066| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-06 12:49:48.4792| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-07 12:31:07.6471| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-07 19:51:20.2617| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-07 19:59:23.6834| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-07 19:59:24.1799| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass12_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 1
+2018-11-07 21:03:57.6957| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora

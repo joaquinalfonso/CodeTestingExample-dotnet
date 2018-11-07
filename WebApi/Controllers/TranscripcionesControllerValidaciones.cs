@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Http;
 using WebApi.Comun;
 using WebApi.Servicios;
+using WebApi.Infraestructura;
 
 namespace WebApi.Controllers
 {
@@ -15,6 +16,14 @@ namespace WebApi.Controllers
 
     public class TranscripcionesControllerValidaciones
     {
+
+        public IConfiguracionResource configuracionResource { private get; set; }
+
+        public TranscripcionesControllerValidaciones()
+        {
+            this.configuracionResource = new ConfiguracionResource();
+        }
+
 
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -78,9 +87,9 @@ namespace WebApi.Controllers
                 parametros.Login = ObtenerUsuarioDeRequestYValidarAcceso(request);
 
                 if (desde != "")
-                    parametros.FechaDesde = DateTime.ParseExact(desde, Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING, System.Globalization.CultureInfo.InvariantCulture);
+                    parametros.FechaDesde = DateTime.ParseExact(desde, configuracionResource.ObtenerConfiguracion().FORMATO_FECHA_VARIABLE_QUERYSTRING, System.Globalization.CultureInfo.InvariantCulture);
                 if (hasta != "")
-                    parametros.FechaHasta = DateTime.ParseExact(hasta, Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING, System.Globalization.CultureInfo.InvariantCulture);
+                    parametros.FechaHasta = DateTime.ParseExact(hasta, configuracionResource.ObtenerConfiguracion().FORMATO_FECHA_VARIABLE_QUERYSTRING, System.Globalization.CultureInfo.InvariantCulture);
 
                 return parametros;
 
@@ -97,13 +106,13 @@ namespace WebApi.Controllers
 
         private void ValidarTipoFichero(HttpPostedFile fichero)
         {
-            if (!Path.GetExtension(fichero.FileName).ToUpper().Equals(Configuracion.EXTENSION_FICHEROS_AUDIO))
+            if (!Path.GetExtension(fichero.FileName).ToUpper().Equals(configuracionResource.ObtenerConfiguracion().EXTENSION_FICHEROS_AUDIO))
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
         }
 
         private void ValidarTamanyoFichero(HttpPostedFile fichero)
         {
-            if (fichero.ContentLength > Configuracion.TAMANYO_MAX_BYTES_MP3)
+            if (fichero.ContentLength > configuracionResource.ObtenerConfiguracion().TAMANYO_MAX_BYTES_MP3)
                 throw new HttpResponseException(HttpStatusCode.RequestEntityTooLarge);
         }
        

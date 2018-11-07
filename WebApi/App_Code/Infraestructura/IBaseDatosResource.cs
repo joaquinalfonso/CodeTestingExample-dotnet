@@ -10,12 +10,12 @@ namespace WebApi.Infraestructura
 {
     public interface IBaseDatosResource
     {
-        int ObtenerNuevoIdTranscripcion();
-        List<Transcripcion> ObtenerTranscripcionesPendientes();
+        //int ObtenerNuevoIdTranscripcion();
+        List<Transcription> ObtenerTranscripcionesPendientes();
         List<TranscripcionDTO> ObtenerTranscripciones(ParametrosConsultaTranscripcionesTO parametros);
-        Transcripcion ObtenerTranscripcion(int id, string login);
-        void ActualizarTranscripcion(Transcripcion transcripcion);
-        void InsertarTranscripcion(Transcripcion transcripcion);
+        Transcription ObtenerTranscripcion(int id, string login);
+        void ActualizarTranscripcion(Transcription transcripcion);
+        int InsertarTranscripcion(Transcription transcripcion);
 
     }
 }

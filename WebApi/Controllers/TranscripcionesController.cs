@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using WebApi.Comun;
+using WebApi.Infraestructura;
 using WebApi.Servicios;
 
 namespace WebApi.Controllers
@@ -17,10 +18,12 @@ namespace WebApi.Controllers
     public class TranscripcionesController : ApiController
     {
         public ITranscripcionesService transcripcionesService { private get; set; }
+        public IConfiguracionResource configuracionResource { private get; set; }
 
         public TranscripcionesController()
         {
             this.transcripcionesService = new TranscripcionesService();
+            this.configuracionResource = new ConfiguracionResource();
         }
         
         #region Caso de uso 1 (CU1)
@@ -52,19 +55,19 @@ namespace WebApi.Controllers
                 switch (((HttpResponseException)ex).Response.StatusCode)
                 {
                     case HttpStatusCode.Unauthorized:
-                        return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+                        return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("UsuarioNoValido"));
 
                     case HttpStatusCode.BadRequest:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("FicheroMp3NoEncontrado"));
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("FicheroMp3NoEncontrado"));
 
                     case HttpStatusCode.RequestEntityTooLarge:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("FicheroExcedeTamanyoMaximo"));
+                        return Request.CreateErrorResponse(HttpStatusCode.RequestEntityTooLarge, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("FicheroExcedeTamanyoMaximo"));
 
                     case HttpStatusCode.UnsupportedMediaType:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("FormatoFicheroNoValido"));
+                        return Request.CreateErrorResponse(HttpStatusCode.UnsupportedMediaType, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("FormatoFicheroNoValido"));
 
                     default:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("HaOcurridoUnError"));
 
                 }
             }
@@ -72,7 +75,7 @@ namespace WebApi.Controllers
             if (ex.GetType().IsAssignableFrom(typeof(TranscripcionNoGuardadaException)))
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
             else
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("HaOcurridoUnError"));
         }
 
         #endregion
@@ -109,14 +112,15 @@ namespace WebApi.Controllers
             switch (ex.Response.StatusCode)
             {
                 case HttpStatusCode.Unauthorized:
-                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("UsuarioNoValido"));
 
                 case HttpStatusCode.BadRequest:
-                    string mensajeError = string.Format(Configuracion.ObtenerMensajeTexto("FormatoIncorrectoGetTranscripciones"), Configuracion.FORMATO_FECHA_VARIABLE_QUERYSTRING);
+                    string mensajeError = string.Format(configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("FormatoIncorrectoGetTranscripciones"),
+                                                        configuracionResource.ObtenerConfiguracion().FORMATO_FECHA_VARIABLE_QUERYSTRING);
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, mensajeError);
 
                 default:
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("HaOcurridoUnError"));
             }
         }
 
@@ -151,7 +155,7 @@ namespace WebApi.Controllers
             if (ex.GetType().IsAssignableFrom(typeof(HttpResponseException))
                 &&
                 ((HttpResponseException)ex).Response.StatusCode == HttpStatusCode.Unauthorized)
-                return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, Configuracion.ObtenerMensajeTexto("UsuarioNoValido"));
+                return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("UsuarioNoValido"));
             else
             if (ex.GetType().IsAssignableFrom(typeof(TranscripcionNoEncontradaException)))
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex.Message);
@@ -162,7 +166,7 @@ namespace WebApi.Controllers
             if (ex.GetType().IsAssignableFrom(typeof(TranscripcionErroneaException)))
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
             else
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Configuracion.ObtenerMensajeTexto("HaOcurridoUnError"));
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, configuracionResource.ObtenerConfiguracion().ObtenerMensajeTexto("HaOcurridoUnError"));
         }
 
         #endregion

@@ -57,11 +57,12 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.5.10\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Quartz, Version=3.0.7.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <HintPath>..\packages\Quartz.3.0.7\lib\net452\Quartz.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
@@ -97,30 +98,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Vocali.mdf" />
-    <Content Include="App_Data\Vocali_log.ldf">
-      <DependentUpon>Vocali.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\DB.mdf" />
+    <Content Include="App_Data\DB_log.ldf" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Code\Comun\Configuracion.cs" />
+    <Compile Include="App_Code\Infraestructura\Configuracion.cs" />
     <Compile Include="App_Code\Excepciones\TranscripcionNoGuardadaException.cs" />
     <Compile Include="App_Code\Excepciones\TranscripcionErroneaException.cs" />
     <Compile Include="App_Code\Infraestructura\BaseDatosResource.cs" />
+    <Compile Include="App_Code\Infraestructura\ConfiguracionResource.cs" />
     <Compile Include="App_Code\Infraestructura\FicherosResource.cs" />
     <Compile Include="App_Code\Infraestructura\IBaseDatosResource.cs" />
+    <Compile Include="App_Code\Infraestructura\IConfiguracionResource.cs" />
     <Compile Include="App_Code\Infraestructura\IFicherosResource.cs" />
     <Compile Include="App_Code\Servicios\IUsuarioService.cs" />
     <Compile Include="App_Code\Excepciones\TranscripcionPendienteException.cs" />
@@ -148,34 +141,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+    <Compile Include="Migrations\201811071233462_CreateTrancriptions.cs" />
+    <Compile Include="Migrations\201811071233462_CreateTrancriptions.Designer.cs">
+      <DependentUpon>201811071233462_CreateTrancriptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Migrations\201811071957095_AddAutoIncremetal.cs" />
+    <Compile Include="Migrations\201811071957095_AddAutoIncremetal.Designer.cs">
+      <DependentUpon>201811071957095_AddAutoIncremetal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Transcripcion.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Transcription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -187,7 +165,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811071233462_CreateTrancriptions.resx">
+      <DependentUpon>201811071233462_CreateTrancriptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811071957095_AddAutoIncremetal.resx">
+      <DependentUpon>201811071957095_AddAutoIncremetal.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

@@ -11,9 +11,16 @@ namespace WebApi.Infraestructura
     public class FicherosResource : IFicherosResource
     {
 
+        public IConfiguracionResource configuracionResource { private get; set; }
+
+        public FicherosResource()
+        {
+            this.configuracionResource = new ConfiguracionResource();
+        }
+
         private string ObtenerRutaFicheroTranscritoTxt(int id)
         {
-            string rutaFicherosTranscripciones = System.Web.Hosting.HostingEnvironment.MapPath(Configuracion.RUTA_FICHEROS_TRANSCRITOS);
+            string rutaFicherosTranscripciones = System.Web.Hosting.HostingEnvironment.MapPath(configuracionResource.ObtenerConfiguracion().RUTA_FICHEROS_TRANSCRITOS);
             var rutaFicheroTxt = rutaFicherosTranscripciones + string.Format("{0}.txt", id);
             return rutaFicheroTxt;
         }
@@ -33,8 +40,8 @@ namespace WebApi.Infraestructura
 
         private string ObtenerRutaFicheroMp3(int id)
         {
-            string rutaFicherosMp3 = System.Web.Hosting.HostingEnvironment.MapPath(Configuracion.RUTA_FICHEROS_MP3);
-            return string.Format("{0}{1}{2}", rutaFicherosMp3, id, Configuracion.EXTENSION_FICHEROS_AUDIO.ToLower());
+            string rutaFicherosMp3 = System.Web.Hosting.HostingEnvironment.MapPath(configuracionResource.ObtenerConfiguracion().RUTA_FICHEROS_MP3);
+            return string.Format("{0}{1}{2}", rutaFicherosMp3, id, configuracionResource.ObtenerConfiguracion().EXTENSION_FICHEROS_AUDIO.ToLower());
         }
 
         public byte[] ObtenerFicheroMp3(int id)
@@ -58,8 +65,8 @@ namespace WebApi.Infraestructura
 
         public void GrabarFicheroMp3(HttpPostedFile postedFile, int idTranscripcion)
         {
-            string rutaGuardado = HttpContext.Current.Server.MapPath(Configuracion.RUTA_FICHEROS_MP3);
-            var filePath = rutaGuardado + string.Format("{0}{1}", idTranscripcion, Configuracion.EXTENSION_FICHEROS_AUDIO.ToLower());
+            string rutaGuardado = HttpContext.Current.Server.MapPath(configuracionResource.ObtenerConfiguracion().RUTA_FICHEROS_MP3);
+            var filePath = rutaGuardado + string.Format("{0}{1}", idTranscripcion, configuracionResource.ObtenerConfiguracion().EXTENSION_FICHEROS_AUDIO.ToLower());
 
             postedFile.SaveAs(filePath);
         }

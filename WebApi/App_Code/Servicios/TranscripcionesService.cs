@@ -21,6 +21,7 @@ namespace WebApi.Servicios
 
         public IFicherosResource ficherosResource { private get; set; }
         public IBaseDatosResource baseDatosResource { private get; set; }
+        public IConfiguracionResource configuracionResource { private get; set; }
 
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -29,11 +30,12 @@ namespace WebApi.Servicios
             //db = new VocaliEntities();
             ficherosResource = new FicherosResource();
             baseDatosResource = new BaseDatosResource();
+            configuracionResource = new ConfiguracionResource();
         }
 
-        private Transcripcion ObtenerTranscripcionRealizada(int id, string login)
+        private Transcription ObtenerTranscripcionRealizada(int id, string login)
         {
-            Transcripcion transcripcion = baseDatosResource.ObtenerTranscripcion(id, login);
+            Transcription transcripcion = baseDatosResource.ObtenerTranscripcion(id, login);
 
             // Flujo Alternativo A
             if (transcripcion == null)
@@ -42,14 +44,14 @@ namespace WebApi.Servicios
             }
 
             // Flujo Alternativo B
-            if (transcripcion.Estado == TipoEstadoTranscripcion.PENDIENTE.ToString() ||
-                transcripcion.Estado == TipoEstadoTranscripcion.EN_PROGRESO.ToString())
+            if (transcripcion.Estado == (int)TipoEstadoTranscripcion.PENDIENTE ||
+                transcripcion.Estado == (int)TipoEstadoTranscripcion.EN_PROGRESO)
             {
                 throw new TranscripcionPendienteException();
             }
 
             // Flujo Alternativo C
-            if (transcripcion.Estado == TipoEstadoTranscripcion.ERROR.ToString())
+            if (transcripcion.Estado == (int)TipoEstadoTranscripcion.ERROR)
             {
                 throw new TranscripcionErroneaException();
             }
@@ -57,7 +59,7 @@ namespace WebApi.Servicios
             return transcripcion;
         }
 
-        private string ObtenerFicheroTranscritoTxt(Transcripcion transcripcion)
+        private string ObtenerFicheroTranscritoTxt(Transcription transcripcion)
         {
 
             string texto = "";
@@ -67,7 +69,7 @@ namespace WebApi.Servicios
                 throw new TranscripcionNoEncontradaException();
             }
 
-            if (transcripcion.Estado != TipoEstadoTranscripcion.REALIZADA.ToString())
+            if (transcripcion.Estado != (int)TipoEstadoTranscripcion.REALIZADA)
             {
                 throw new TranscripcionPendienteException();
             }
@@ -94,18 +96,18 @@ namespace WebApi.Servicios
 
         }
 
-        public void ProcesarTranscripciones(List<Transcripcion> transcripcionesPendientes)
+        public void ProcesarTranscripciones(List<Transcription> transcripcionesPendientes)
         {
             var cacheTranscripcionesPendientes = new CacheTranscripcionesPendientes(transcripcionesPendientes);
             var procesos = new List<Task>();
 
-            for (int contador = 0; contador < Configuracion.NUMERO_HILOS_PROCESAMIENTO_TRANSCRIPCIONES; contador++)
+            for (int contador = 0; contador < configuracionResource.ObtenerConfiguracion().NUMERO_HILOS_PROCESAMIENTO_TRANSCRIPCIONES; contador++)
             {
                 procesos.Add(Task.Run(() =>
                 {
                     while (cacheTranscripcionesPendientes.HayTranscripcionesPendientes)
                     {
-                        Transcripcion transcripcionPendiente = cacheTranscripcionesPendientes.ObtenerSiguienteTranscripcionPendiente();
+                        Transcription transcripcionPendiente = cacheTranscripcionesPendientes.ObtenerSiguienteTranscripcionPendiente();
 
                         if (transcripcionPendiente != null)
                         {
@@ -120,9 +122,9 @@ namespace WebApi.Servicios
 
         }
 
-        public void ProcesarTranscripcion(Transcripcion transcripcion)
+        public void ProcesarTranscripcion(Transcription transcripcion)
         {
-            string nuevoEstadoTranscripcion = TipoEstadoTranscripcion.EN_PROGRESO.ToString();
+            TipoEstadoTranscripcion nuevoEstadoTranscripcion = TipoEstadoTranscripcion.EN_PROGRESO;
             string mensajeError = "";
 
             try
@@ -133,19 +135,19 @@ namespace WebApi.Servicios
 
                 ficherosResource.GrabarFicheroTextoTranscrito(transcripcion.Id, textoTranscrito);
 
-                nuevoEstadoTranscripcion = TipoEstadoTranscripcion.REALIZADA.ToString();
+                nuevoEstadoTranscripcion = TipoEstadoTranscripcion.REALIZADA;
 
             }
             catch (Exception ex)
             {
-                nuevoEstadoTranscripcion = TipoEstadoTranscripcion.ERROR.ToString();
+                nuevoEstadoTranscripcion = TipoEstadoTranscripcion.ERROR;
                 mensajeError = ex.Message;
 
                 logger.Error(ex, ex.Message);
             }
             finally
             {
-                transcripcion.Estado = nuevoEstadoTranscripcion;
+                transcripcion.Estado = (int)nuevoEstadoTranscripcion;
                 transcripcion.FechaHoraTranscripcion = DateTime.Now;
                 transcripcion.MensajeError = mensajeError;
                 baseDatosResource.ActualizarTranscripcion(transcripcion);
@@ -154,7 +156,7 @@ namespace WebApi.Servicios
 
         public void ProcesarTranscripcionesPendientes()
         {
-            List<Transcripcion> transcripcionesPendientes = baseDatosResource.ObtenerTranscripcionesPendientes();
+            List<Transcription> transcripcionesPendientes = baseDatosResource.ObtenerTranscripcionesPendientes();
 
             logger.Info("{0} transcripciones pendientes de procesar", transcripcionesPendientes.Count);
 
@@ -167,20 +169,18 @@ namespace WebApi.Servicios
         {
             try
             {
-                int nuevoIdTranscripcion = baseDatosResource.ObtenerNuevoIdTranscripcion();
-
-                ficherosResource.GrabarFicheroMp3(fichero, nuevoIdTranscripcion);
-
-                Transcripcion transcripcion = new Transcripcion
+                
+                Transcription transcripcion = new Transcription
                 {
-                    Id = nuevoIdTranscripcion,
                     FechaHoraRecepcion = DateTime.Now,
                     LoginUsuario = login,
                     NombreArchivo = fichero.FileName,
-                    Estado = TipoEstadoTranscripcion.PENDIENTE.ToString()
+                    Estado = (int)TipoEstadoTranscripcion.PENDIENTE
                 };
 
-                baseDatosResource.InsertarTranscripcion(transcripcion);
+                int nuevoIdTranscripcion = baseDatosResource.InsertarTranscripcion(transcripcion);
+
+                ficherosResource.GrabarFicheroMp3(fichero, nuevoIdTranscripcion);
             }
             catch (Exception ex)
             {
@@ -191,7 +191,7 @@ namespace WebApi.Servicios
 
         public string ObtenerTextoTranscripcionRealizada(int id, string login)
         {
-            Transcripcion transcripcion = ObtenerTranscripcionRealizada(id, login);
+            Transcription transcripcion = ObtenerTranscripcionRealizada(id, login);
             string textoTranscrito = ObtenerFicheroTranscritoTxt(transcripcion);
             return textoTranscrito;
         }

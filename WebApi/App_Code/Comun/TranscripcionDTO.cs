@@ -14,12 +14,12 @@ namespace WebApi.Comun
         public string Estado { get; set; }
         public string FechaTranscripcion { get; set; }
 
-        public TranscripcionDTO(Transcripcion transcripcion)
+        public TranscripcionDTO(Transcription transcripcion)
         {
             this.Id = transcripcion.Id;
             this.FechaRecepcion = transcripcion.FechaHoraRecepcion.ToShortDateString();
             this.NombreFicheroMp3 = transcripcion.NombreArchivo;
-            this.Estado = transcripcion.Estado;
+            this.Estado = ((TipoEstadoTranscripcion)Enum.ToObject(typeof(TipoEstadoTranscripcion), transcripcion.Estado)).ToString();
             this.FechaTranscripcion = (transcripcion.FechaHoraTranscripcion != null) ? ((DateTime)transcripcion.FechaHoraTranscripcion).ToShortDateString() : "";
         }
     }

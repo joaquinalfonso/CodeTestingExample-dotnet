@@ -6,24 +6,25 @@ using System.Web;
 using WebApi.Comun;
 using WebApi.Models;
 
+
 namespace WebApi.Infraestructura
 {
     public class BaseDatosResource : IBaseDatosResource
     {
 
-        public VocaliEntities db { get; set; }
+        public WebApiDBContext db { get; set; }
       
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         public BaseDatosResource()
         {
-            db = new VocaliEntities();            
+            db = new WebApiDBContext();            
         }
 
-        public List<Transcripcion> ObtenerTranscripcionesPendientes()
+        public List<Transcription> ObtenerTranscripcionesPendientes()
         {
-            IQueryable<Transcripcion> list = from g in db.Transcripciones
-                                             where g.Estado == TipoEstadoTranscripcion.PENDIENTE.ToString()
+            IQueryable<Transcription> list = from g in db.Transcriptions
+                                             where g.Estado == (int)TipoEstadoTranscripcion.PENDIENTE
                                              select g;
 
             return (list.ToList());
@@ -32,7 +33,7 @@ namespace WebApi.Infraestructura
         public List<TranscripcionDTO> ObtenerTranscripciones(ParametrosConsultaTranscripcionesTO parametros)
         {
 
-            IQueryable<Transcripcion> list = from g in db.Transcripciones
+            IQueryable<Transcription> list = from g in db.Transcriptions
                                              where g.LoginUsuario == parametros.Login &&
                                                   (g.FechaHoraRecepcion >= parametros.FechaDesde || parametros.FechaDesde == null) &&
                                                   (g.FechaHoraRecepcion <= parametros.FechaHasta || parametros.FechaHasta == null)
@@ -45,29 +46,29 @@ namespace WebApi.Infraestructura
 
         }
 
-        public int ObtenerNuevoIdTranscripcion()
-        {
-            //TODO: Implementar como secuencia en EF
-            int? maxId = db.Transcripciones.Max(x => (int?)x.Id);
-            int nuevoId = (maxId != null) ? (int)maxId + 1 : 1;
+        //public int ObtenerNuevoIdTranscripcion()
+        //{
+        //    //TODO: Implementar como secuencia en EF
+        //    int? maxId = db.Transcriptions.Max(x => (int?)x.Id);
+        //    int nuevoId = (maxId != null) ? (int)maxId + 1 : 1;
 
-            return nuevoId;
+        //    return nuevoId;
+        //}
+
+        public Transcription ObtenerTranscripcion(int id, string login)
+        {
+            return db.Transcriptions.FirstOrDefault((p) => p.Id == id && p.LoginUsuario == login);
         }
 
-        public Transcripcion ObtenerTranscripcion(int id, string login)
+        private WebApiDBContext ObtenerContextoDB()
         {
-            return db.Transcripciones.FirstOrDefault((p) => p.Id == id && p.LoginUsuario == login);
+            return new WebApiDBContext();
         }
 
-        private VocaliEntities ObtenerContextoDB()
-        {
-            return new VocaliEntities();
-        }
-
-        public void ActualizarTranscripcion(Transcripcion transcripcion)
+        public void ActualizarTranscripcion(Transcription transcripcion)
         {
             //Se crea un dbcontext nuevo porque no soporta operaciones con hilos
-            VocaliEntities dbIndependiente = ObtenerContextoDB();
+            WebApiDBContext dbIndependiente = ObtenerContextoDB();
 
             dbIndependiente.Entry(transcripcion).State = EntityState.Modified;
 
@@ -83,15 +84,17 @@ namespace WebApi.Infraestructura
 
         }
 
-        public void InsertarTranscripcion(Transcripcion transcripcion)
+        public int InsertarTranscripcion(Transcription transcripcion)
         {
             //VocaliEntities dbIndependiente = ObtenerContextoDB();
+            int nuevoId = 0;
 
-            db.Transcripciones.Add(transcripcion);
+            db.Transcriptions.Add(transcripcion);
 
             try
             {
-                db.SaveChanges();
+                nuevoId = db.SaveChanges();
+                return nuevoId;
             }
             catch (Exception ex)
             {

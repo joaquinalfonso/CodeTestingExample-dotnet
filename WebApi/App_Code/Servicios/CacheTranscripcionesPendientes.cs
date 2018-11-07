@@ -13,10 +13,10 @@ namespace WebApi.Servicios
     {
         private ReaderWriterLockSlim bloqueo = new ReaderWriterLockSlim();
 
-        private List<Transcripcion> transcripciones;
+        private List<Transcription> transcripciones;
 
 
-        public CacheTranscripcionesPendientes(List<Transcripcion> transcripciones)
+        public CacheTranscripcionesPendientes(List<Transcription> transcripciones)
         {
             this.transcripciones = transcripciones;
         }
@@ -42,7 +42,7 @@ namespace WebApi.Servicios
         {
             get
             {
-                return transcripciones.Count(x => x.Estado == TipoEstadoTranscripcion.PENDIENTE.ToString());
+                return transcripciones.Count(x => x.Estado == (int)TipoEstadoTranscripcion.PENDIENTE);
             }
         }
 
@@ -64,21 +64,21 @@ namespace WebApi.Servicios
         }
 
 
-        public Transcripcion ObtenerSiguienteTranscripcionPendiente()
+        public Transcription ObtenerSiguienteTranscripcionPendiente()
         {
             bloqueo.EnterWriteLock();
 
-            Transcripcion transcripcion = null;
+            Transcription transcripcion = null;
 
             try
             {
                 transcripcion = transcripciones
-                    .FindAll(x => x.Estado == TipoEstadoTranscripcion.PENDIENTE.ToString())
+                    .FindAll(x => x.Estado == (int)TipoEstadoTranscripcion.PENDIENTE)
                     .OrderBy(x => x.FechaHoraRecepcion)
                     .FirstOrDefault();
 
                 if (transcripcion != null)
-                    transcripcion.Estado = TipoEstadoTranscripcion.EN_PROGRESO.ToString();
+                    transcripcion.Estado = (int)TipoEstadoTranscripcion.EN_PROGRESO;
 
                 return transcripcion;
             }

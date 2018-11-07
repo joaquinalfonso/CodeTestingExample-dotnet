@@ -12,7 +12,7 @@ namespace WebApi.Servicios
     {
         List<TranscripcionDTO> ObtenerTranscripciones(ParametrosConsultaTranscripcionesTO parametros);
         //int ObtenerNuevoIdTranscripcion();
-        void ProcesarTranscripcion(Transcripcion transcripcion);
+        void ProcesarTranscripcion(Transcription transcripcion);
         void ProcesarTranscripcionesPendientes();
         //void ProcesarTranscripciones(List<Transcripcion> transcripciones);
         string ObtenerTextoTranscripcionRealizada(int id, string login);
