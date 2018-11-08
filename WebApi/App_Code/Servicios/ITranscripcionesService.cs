@@ -11,12 +11,9 @@ namespace WebApi.Servicios
     public interface ITranscripcionesService
     {
         List<TranscripcionDTO> ObtenerTranscripciones(ParametrosConsultaTranscripcionesTO parametros);
-        //int ObtenerNuevoIdTranscripcion();
         void ProcesarTranscripcion(Transcription transcripcion);
         void ProcesarTranscripcionesPendientes();
-        //void ProcesarTranscripciones(List<Transcripcion> transcripciones);
         string ObtenerTextoTranscripcionRealizada(int id, string login);
         void RecibirFicheroATranscribir(HttpPostedFile fichero, string login);
-
     }
 }

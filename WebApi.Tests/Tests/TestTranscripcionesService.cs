@@ -36,18 +36,6 @@ namespace WebApi.Servicios.Tests
             return mockContext;
         }
         
-        //[TestMethod]
-        //public void ObtenerNuevoIdTranscripcion_OK()
-        //{
-        //    var transcripcionesService = new TranscripcionesService();
-        //    Mock<VocaliEntities> dbMock = ObtenerDBMock();
-        //    transcripcionesService.db = dbMock.Object;            
-        //    transcripcionesService.ficherosResource = new FicherosResourceMock();
-
-        //    int id = transcripcionesService.ObtenerNuevoIdTranscripcion();
-                
-        //    Assert.AreEqual(id, 4);
-        //}
-
+        
     }
 }

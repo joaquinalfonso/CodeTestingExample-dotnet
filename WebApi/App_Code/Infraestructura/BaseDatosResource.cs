@@ -46,14 +46,7 @@ namespace WebApi.Infraestructura
 
         }
 
-        //public int ObtenerNuevoIdTranscripcion()
-        //{
-        //    //TODO: Implementar como secuencia en EF
-        //    int? maxId = db.Transcriptions.Max(x => (int?)x.Id);
-        //    int nuevoId = (maxId != null) ? (int)maxId + 1 : 1;
-
-        //    return nuevoId;
-        //}
+       
 
         public Transcription ObtenerTranscripcion(int id, string login)
         {
@@ -93,7 +86,8 @@ namespace WebApi.Infraestructura
 
             try
             {
-                nuevoId = db.SaveChanges();
+                db.SaveChanges();
+                nuevoId = transcripcion.Id;
                 return nuevoId;
             }
             catch (Exception ex)

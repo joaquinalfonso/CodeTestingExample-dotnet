@@ -7,10 +7,10 @@ namespace WebApi.Infraestructura
 
     public interface IFicherosResource
     {
-        bool ExisteFicheroTranscritoTxt(int id);
-        string ObtenerFicheroTranscritoTxt(int id);
-        void GrabarFicheroTextoTranscrito(int id, string textoTranscrito);
-        byte[] ObtenerFicheroMp3(int id);
-        void GrabarFicheroMp3(HttpPostedFile postedFile, int idTranscripcion);
+        bool ExisteFicheroTranscritoTxt(string nombreFichero);
+        string ObtenerFicheroTranscritoTxt(string nombreFichero);
+        void GrabarFicheroTextoTranscrito(string nombreFichero, string textoTranscrito);
+        byte[] ObtenerFicheroMp3(string nombreFichero);
+        void GrabarFicheroMp3(HttpPostedFile postedFile, string nombreFichero);
     }
 }

@@ -59,6 +59,11 @@ namespace WebApi.Servicios
             return transcripcion;
         }
 
+        private string ObtenerNombreFicheroTranscritoTxt(int id)
+        {
+            return string.Format("{0}.txt", id);
+         }
+
         private string ObtenerFicheroTranscritoTxt(Transcription transcripcion)
         {
 
@@ -76,9 +81,11 @@ namespace WebApi.Servicios
 
             try
             {
-                if (ficherosResource.ExisteFicheroTranscritoTxt(transcripcion.Id))
+                string nombreFicheroTranscrito = ObtenerNombreFicheroTranscritoTxt(transcripcion.Id);
+
+                if (ficherosResource.ExisteFicheroTranscritoTxt(nombreFicheroTranscrito))
                 {
-                    texto = ficherosResource.ObtenerFicheroTranscritoTxt(transcripcion.Id);
+                    texto = ficherosResource.ObtenerFicheroTranscritoTxt(nombreFicheroTranscrito);
                 }
             }
             catch (Exception ex)
@@ -122,6 +129,12 @@ namespace WebApi.Servicios
 
         }
 
+
+        private string ObtenerNombreFicheroMp3(Transcription transcripcion)
+        {
+            return string.Format("{0}{1}", transcripcion.Id, configuracionResource.ObtenerConfiguracion().EXTENSION_FICHEROS_AUDIO.ToLower());
+        }
+
         public void ProcesarTranscripcion(Transcription transcripcion)
         {
             TipoEstadoTranscripcion nuevoEstadoTranscripcion = TipoEstadoTranscripcion.EN_PROGRESO;
@@ -129,11 +142,16 @@ namespace WebApi.Servicios
 
             try
             {
-                Byte[] ficheroMp3 = ficherosResource.ObtenerFicheroMp3(transcripcion.Id);
+
+                string nombreFichero = ObtenerNombreFicheroMp3(transcripcion);
+
+                Byte[] ficheroMp3 = ficherosResource.ObtenerFicheroMp3(nombreFichero);
 
                 string textoTranscrito = new INVOXMedicalMock().TranscribirFicheroMp3(transcripcion.LoginUsuario, ficheroMp3);
 
-                ficherosResource.GrabarFicheroTextoTranscrito(transcripcion.Id, textoTranscrito);
+                string nombreFicheroTranscrito = ObtenerNombreFicheroTranscritoTxt(transcripcion.Id);
+
+                ficherosResource.GrabarFicheroTextoTranscrito(nombreFicheroTranscrito, textoTranscrito);
 
                 nuevoEstadoTranscripcion = TipoEstadoTranscripcion.REALIZADA;
 
@@ -180,7 +198,9 @@ namespace WebApi.Servicios
 
                 int nuevoIdTranscripcion = baseDatosResource.InsertarTranscripcion(transcripcion);
 
-                ficherosResource.GrabarFicheroMp3(fichero, nuevoIdTranscripcion);
+                string nombreFichero = ObtenerNombreFicheroMp3(transcripcion);
+
+                ficherosResource.GrabarFicheroMp3(fichero, nombreFichero);
             }
             catch (Exception ex)
             {

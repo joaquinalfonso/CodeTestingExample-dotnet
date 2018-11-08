@@ -18,44 +18,44 @@ namespace WebApi.Infraestructura
             this.configuracionResource = new ConfiguracionResource();
         }
 
-        private string ObtenerRutaFicheroTranscritoTxt(int id)
+
+
+        public bool ExisteFicheroTranscritoTxt(string nombreFichero)
         {
-            string rutaFicherosTranscripciones = System.Web.Hosting.HostingEnvironment.MapPath(configuracionResource.ObtenerConfiguracion().RUTA_FICHEROS_TRANSCRITOS);
-            var rutaFicheroTxt = rutaFicherosTranscripciones + string.Format("{0}.txt", id);
-            return rutaFicheroTxt;
+            string rutaFichero = ObtenerRutaFicheroTranscritoTxt(nombreFichero);
+            return File.Exists(rutaFichero);
         }
 
-        public bool ExisteFicheroTranscritoTxt(int id)
+        public void GrabarFicheroTextoTranscrito(string nombreFichero, string textoTranscrito)
         {
-            string rutaFicheroTxt = ObtenerRutaFicheroTranscritoTxt(id);
-            return File.Exists(rutaFicheroTxt);
-        }
-
-        public void GrabarFicheroTextoTranscrito(int id, string textoTranscrito)
-        {
-            string rutaFicheroTranscrito = ObtenerRutaFicheroTranscritoTxt(id);
+            string rutaFicheroTranscrito = ObtenerRutaFicheroTranscritoTxt(nombreFichero);
             File.WriteAllText(rutaFicheroTranscrito, textoTranscrito, System.Text.Encoding.UTF8);
         }
 
-
-        private string ObtenerRutaFicheroMp3(int id)
+        private string ObtenerRutaFicheroTranscritoTxt(string nombreFichero)
         {
-            string rutaFicherosMp3 = System.Web.Hosting.HostingEnvironment.MapPath(configuracionResource.ObtenerConfiguracion().RUTA_FICHEROS_MP3);
-            return string.Format("{0}{1}{2}", rutaFicherosMp3, id, configuracionResource.ObtenerConfiguracion().EXTENSION_FICHEROS_AUDIO.ToLower());
+            string rutaFicherosTranscripciones = System.Web.Hosting.HostingEnvironment.MapPath(configuracionResource.ObtenerConfiguracion().RUTA_FICHEROS_TRANSCRITOS);
+            return rutaFicherosTranscripciones + nombreFichero;
         }
 
-        public byte[] ObtenerFicheroMp3(int id)
+        private string ObtenerRutaFicheroMp3(string nombreFichero)
         {
-            string rutaFicheroMp3 = ObtenerRutaFicheroMp3(id);
+            string rutaFicherosMp3 = System.Web.Hosting.HostingEnvironment.MapPath(configuracionResource.ObtenerConfiguracion().RUTA_FICHEROS_MP3);
+            return string.Format("{0}{1}", rutaFicherosMp3, nombreFichero);
+        }
+
+        public byte[] ObtenerFicheroMp3(string nombreFichero)
+        {
+            string rutaFicheroMp3 = ObtenerRutaFicheroMp3(nombreFichero);
 
             byte[] ficheroMp3 = File.ReadAllBytes(rutaFicheroMp3);
 
             return ficheroMp3;
         }
 
-        public string ObtenerFicheroTranscritoTxt(int id)
+        public string ObtenerFicheroTranscritoTxt(string nombreFichero)
         {
-            string rutaFicheroTxt = ObtenerRutaFicheroTranscritoTxt(id);
+            string rutaFicheroTxt = ObtenerRutaFicheroTranscritoTxt(nombreFichero);
 
             string contenidoFicheroTxt = "";
             contenidoFicheroTxt = File.ReadAllText(rutaFicheroTxt, System.Text.Encoding.UTF8);
@@ -63,11 +63,10 @@ namespace WebApi.Infraestructura
             return contenidoFicheroTxt;
         }
 
-        public void GrabarFicheroMp3(HttpPostedFile postedFile, int idTranscripcion)
+        public void GrabarFicheroMp3(HttpPostedFile postedFile, string nombreFichero)
         {
             string rutaGuardado = HttpContext.Current.Server.MapPath(configuracionResource.ObtenerConfiguracion().RUTA_FICHEROS_MP3);
-            var filePath = rutaGuardado + string.Format("{0}{1}", idTranscripcion, configuracionResource.ObtenerConfiguracion().EXTENSION_FICHEROS_AUDIO.ToLower());
-
+            var filePath = rutaGuardado + nombreFichero;
             postedFile.SaveAs(filePath);
         }
     }

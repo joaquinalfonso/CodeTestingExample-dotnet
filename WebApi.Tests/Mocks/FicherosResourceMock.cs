@@ -14,27 +14,27 @@ namespace Tests.Mocks
 
     public class FicherosResourceMock : IFicherosResource
     {
-        public bool ExisteFicheroTranscritoTxt(int id)
+        public bool ExisteFicheroTranscritoTxt(string nombreFichero)
         {
             throw new NotImplementedException();
         }
 
-        public void GrabarFicheroMp3(HttpPostedFile postedFile, int idTranscripcion)
+        public void GrabarFicheroMp3(HttpPostedFile postedFile, string nombreFichero)
         {
             throw new NotImplementedException();
         }
 
-        public void GrabarFicheroTextoTranscrito(int id, string textoTranscrito)
+        public void GrabarFicheroTextoTranscrito(string nombreFichero, string textoTranscrito)
         {
             throw new NotImplementedException();
         }
 
-        public byte[] ObtenerFicheroMp3(int id)
+        public byte[] ObtenerFicheroMp3(string nombreFichero)
         {
             throw new NotImplementedException();
         }
 
-        public string ObtenerFicheroTranscritoTxt(int id)
+        public string ObtenerFicheroTranscritoTxt(string nombreFichero)
         {
             throw new NotImplementedException();
         }

@@ -38,3 +38,20 @@
 2018-11-07 19:59:23.6834| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
 2018-11-07 19:59:24.1799| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass12_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 1
 2018-11-07 21:03:57.6957| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-07 23:14:26.9338| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-07 23:14:27.7738| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass16_0.<ProcesarTranscripciones>b__0 | Proceso 48 Transcripcion 3
+2018-11-07 23:14:27.7738| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass16_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 2
+2018-11-07 23:20:25.0136| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-07 23:20:25.6107| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass16_0.<ProcesarTranscripciones>b__0 | Proceso 48 Transcripcion 6
+2018-11-07 23:20:25.6107| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass16_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 4
+2018-11-07 23:20:25.6107| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass16_0.<ProcesarTranscripciones>b__0 | Proceso 47 Transcripcion 5
+2018-11-07 23:24:51.8863| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-07 23:24:52.9042| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass16_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 7
+2018-11-08 09:51:27.3213| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-08 09:51:30.8314| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass17_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 8
+2018-11-08 09:52:17.0758| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-08 09:52:17.6904| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass17_0.<ProcesarTranscripciones>b__0 | Proceso 46 Transcripcion 9
+2018-11-08 10:02:14.7564| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-08 10:03:26.5483| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
+2018-11-08 10:03:27.5471| Trace | WebApi.Servicios.TranscripcionesService+<>c__DisplayClass17_0.<ProcesarTranscripciones>b__0 | Proceso 48 Transcripcion 10
+2018-11-08 10:04:50.2529| Trace | WebApi.Cron.CronTareaHora.<Execute>b__6_0 | Ejecutando tarea hora
