@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EjercicioSeleccionVocali", "WebApi\EjercicioSeleccionVocali.csproj", "{F020F831-3D43-4062-8964-30C6F9E96476}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeTestingExample", "WebApi\CodeTestingExample.csproj", "{F020F831-3D43-4062-8964-30C6F9E96476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EjercicioSeleccionVocali.Tests", "WebApi.Tests\EjercicioSeleccionVocali.Tests.csproj", "{F8D60987-399F-42AA-9733-FB9486E4BF2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeTestingExample.Tests", "WebApi.Tests\CodeTestingExample.Tests.csproj", "{F8D60987-399F-42AA-9733-FB9486E4BF2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
